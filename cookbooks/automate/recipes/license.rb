@@ -29,9 +29,6 @@ web_request 'is_automate_licensed' do
   url 'https://127.0.0.1/api/v0/license/status'
   ssl_verify 'none'
   action :get
-  #cert_file automate['certs']['cert']
-  #key_file automate['certs']['key']
-  #cacert_file automate['certs']['cacert']
   status_code [200, 404]
 end
 
@@ -60,11 +57,11 @@ end
 # requested as a trial license in the previous resource
 ruby_block 'determine_license' do
   block do
-    node.run_state[:license] = if node['camsa']['license'].empty?
-      node.run_state[:web_response][:license]
-    else
-      node['camsa']['license']
-    end
+    node.run_state[:license] =  if node['camsa']['license'].empty?
+                                  node.run_state[:web_response][:license]
+                                else
+                                  node['camsa']['license']
+                                end
   end
 end
 
@@ -75,4 +72,3 @@ bash 'apply_license' do
     lazy { node.run_state[:web_response]['is_automate_licensed'].key?(:license_id) }
   }
 end
-

@@ -1,4 +1,4 @@
-if [ -z ${CHEF_POLICYFILE+x} ]
+if [ -z ${CHEF_POLICYFILE} ]
 then
   policy_name="base"
 else
