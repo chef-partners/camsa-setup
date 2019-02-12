@@ -22,8 +22,8 @@ steps:
     inputs:
       SourceFolder: '$(Build.SourcesDirectory)/results'
       Contents: |
-      '*-$(Build.BuildNumber)-*.hart'
-      last_build.env
+        *-$(Build.BuildNumber)-*.hart
+        last_build.env
       TargetFolder: '$(build.artifactstagingdirectory)'
   
   - task: PublishBuildArtifacts@1
