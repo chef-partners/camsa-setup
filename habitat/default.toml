@@ -1,0 +1,7 @@
+log_level = "warn"
+chef_client_ident = ""
+
+[data_collector]
+enable = "true"
+server_url = ""
+token = ""

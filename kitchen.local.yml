@@ -1,0 +1,15 @@
+suites:
+  - name: base
+    provisioner:
+      policyfile: policyfiles/base.rb
+  - name: automate
+    lifecycle:
+      post_create:
+      - remote: sudo sh -c 'echo "127.0.0.1 automate-gateway" >> /etc/hosts'
+    attributes:
+      camsa:
+        firstname: Russell
+        lastname: Seymour
+        emailaddress: rseymour@chef.io
+    provisioner:
+      policyfile: policyfiles/automate.rb
