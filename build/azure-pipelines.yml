@@ -18,6 +18,9 @@ stages:
     pool:
       name: AMA Agent
     steps:
+
+    - task: vsts-chef-task-install-chefdk@1
+
     - task: vsts-chef-task-test-kitchen@1
       displayName: Tests CAMSA Cookbook
       inputs:
