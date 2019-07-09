@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+  
+    <title>Attributes - CAMSA Setup</title>
+
+    <link rel="stylesheet" href="http://localhost:4000/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://localhost:4000/assets/css/just-the-docs.css">
+    <link rel="stylesheet" href="http://localhost:4000/assets/css/customstyles.css">
+
+    
+  
+
+  <link rel="shortcut icon" href="http://localhost:4000/favicon.ico" type="image/x-icon">
+
+  <link rel="stylesheet" href="http://localhost:4000/assets/css/just-the-docs.css">
+
+  
+
+  
+    <script type="text/javascript" src="http://localhost:4000/assets/js/vendor/lunr.min.js"></script>
+  
+  <script type="text/javascript" src="http://localhost:4000/assets/js/just-the-docs.js"></script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Attributes | CAMSA Setup</title>
+<meta name="generator" content="Jekyll v3.8.6" />
+<meta property="og:title" content="Attributes" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Setup cookbooks for the CAMSA solution" />
+<meta property="og:description" content="Setup cookbooks for the CAMSA solution" />
+<link rel="canonical" href="http://localhost:4000/docs/cookbooks/camsa/attributes/" />
+<meta property="og:url" content="http://localhost:4000/docs/cookbooks/camsa/attributes/" />
+<meta property="og:site_name" content="CAMSA Setup" />
+<script type="application/ld+json">
+{"@type":"WebPage","url":"http://localhost:4000/docs/cookbooks/camsa/attributes/","headline":"Attributes","description":"Setup cookbooks for the CAMSA solution","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+
+<body>
+
+  <div class="page-wrap">
+    <div class="side-bar">
+      <a href="http://localhost:4000/" class="site-title fs-6 lh-tight">CAMSA Setup</a>
+      <span class="fs-3"><button class="js-main-nav-trigger navigation-list-toggle btn btn-outline" type="button" data-text-toggle="Hide">Menu</button></span>
+      <div class="navigation main-nav js-main-nav">
+        <nav role="navigation" aria-label="Main navigation">
+  <ul class="navigation-list">
+    
+    
+      
+    
+      
+        
+          <li class="navigation-list-item">
+            
+            <a href="http://localhost:4000/" class="navigation-list-link">Overview</a>
+            
+          </li>
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <li class="navigation-list-item">
+            
+            <a href="http://localhost:4000/docs/cookbooks/cookbooks/" class="navigation-list-link">Cookbooks</a>
+            
+              
+              <ul class="navigation-list-child-list ">
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                    <li class="navigation-list-item  active">
+                      
+                      <a href="http://localhost:4000/docs/cookbooks/camsa/description/" class="navigation-list-link">camsa</a>
+                      
+                        
+                        <ul class="navigation-list-child-list">
+                          
+                            
+                          
+                            
+                          
+                            
+                          
+                            
+                          
+                            
+                          
+                            
+                              <li class="navigation-list-item  active">
+                                <a href="http://localhost:4000/docs/cookbooks/camsa/attributes/" class="navigation-list-link active">Attributes</a>
+                              </li>
+                            
+                          
+                            
+                          
+                            
+                          
+                            
+                          
+                            
+                          
+                            
+                          
+                            
+                          
+                            
+                          
+                            
+                          
+                            
+                          
+                            
+                              <li class="navigation-list-item ">
+                                <a href="http://localhost:4000/docs/cookbooks/camsa/libraries/description/" class="navigation-list-link">Libraries</a>
+                              </li>
+                            
+                          
+                            
+                          
+                            
+                              <li class="navigation-list-item ">
+                                <a href="http://localhost:4000/docs/cookbooks/camsa/recipes/" class="navigation-list-link">Recipes</a>
+                              </li>
+                            
+                          
+                            
+                          
+                            
+                              <li class="navigation-list-item ">
+                                <a href="http://localhost:4000/docs/cookbooks/camsa/resources/description/" class="navigation-list-link">Resources</a>
+                              </li>
+                            
+                          
+                            
+                          
+                            
+                          
+                            
+                              <li class="navigation-list-item ">
+                                <a href="http://localhost:4000/docs/cookbooks/camsa/templates/description/" class="navigation-list-link">Templates</a>
+                              </li>
+                            
+                          
+                            
+                          
+                            
+                          
+                            
+                          
+                            
+                          
+                            
+                          
+                            
+                          
+                            
+                          
+                            
+                          
+                            
+                          
+                        </ul>
+                      
+                    </li>
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+              </ul>
+            
+          </li>
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <li class="navigation-list-item">
+            
+            <a href="http://localhost:4000/docs/policyfiles/description/" class="navigation-list-link">Policy Files</a>
+            
+              
+              <ul class="navigation-list-child-list ">
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                    <li class="navigation-list-item ">
+                      
+                      <a href="http://localhost:4000/docs/policyfiles/server_setup/" class="navigation-list-link">server_setup</a>
+                      
+                    </li>
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+              </ul>
+            
+          </li>
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <li class="navigation-list-item">
+            
+            <a href="http://localhost:4000/docs/glossary" class="navigation-list-link">Glossary of Terms</a>
+            
+          </li>
+        
+      
+    
+  </ul>
+</nav>
+
+      </div>
+      <footer role="contentinfo" class="site-footer">
+        <p class="text-small text-grey-dk-000 mb-0">This site uses <a href="https://github.com/pmarsceill/just-the-docs">Just the Docs</a>, a documentation theme for Jekyll.</p>
+      </footer>
+    </div>
+    <div class="main-content-wrap js-main-content" tabindex="0">
+      <div class="page-header">
+        <div class="main-content">
+          
+          <div class="search js-search">
+            <div class="search-input-wrap">
+              <input type="text" class="js-search-input search-input" tabindex="0" placeholder="Search CAMSA Setup" aria-label="Search CAMSA Setup" autocomplete="off">
+              <svg width="14" height="14" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg" class="search-icon"><title>Search</title><g fill-rule="nonzero"><path d="M17.332 20.735c-5.537 0-10-4.6-10-10.247 0-5.646 4.463-10.247 10-10.247 5.536 0 10 4.601 10 10.247s-4.464 10.247-10 10.247zm0-4c3.3 0 6-2.783 6-6.247 0-3.463-2.7-6.247-6-6.247s-6 2.784-6 6.247c0 3.464 2.7 6.247 6 6.247z"/><path d="M11.672 13.791L.192 25.271 3.02 28.1 14.5 16.62z"/></g></svg>
+            </div>
+            <div class="js-search-results search-results-wrap"></div>
+          </div>
+          
+          
+            <ul class="list-style-none text-small mt-md-1 mb-md-1 pb-4 pb-md-0 js-aux-nav aux-nav">
+              
+                <li class="d-inline-block my-0"><a href="//github.com/chef-partners/camsa-setup">CAMSA Setup</a></li>
+              
+            </ul>
+          
+        </div>
+      </div>
+      <div class="main-content">
+        
+          
+            <nav class="breadcrumb-nav">
+              <ol class="breadcrumb-nav-list">
+                
+                  <li class="breadcrumb-nav-list-item"><a href="">camsa</a></li>
+                
+                <li class="breadcrumb-nav-list-item"><span>Attributes</span></li>
+              </ol>
+            </nav>
+          
+        
+        <div id="main-content" class="page-content" role="main">
+          <h1 id="attributes">Attributes</h1>
+
+<p>There are a lot of attributes in the cookbook. To make management easier they have been split across several files. The following table shows these attributes, what they are used for and the file that can be found in.</p>
+
+<p>A lot of the attributes are derived from the host on which the cookbook is run, for example metadata from the Azure instance. This means that there are only a few that have to be set when testing or deploying the system. The ones that need to be specified are highlighted in the table.</p>
+
+<h2 id="automaterb">automate.rb</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Description</th>
+      <th>Default Value</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">camsa.automate.tokens</code></td>
+      <td>Array of names of tokens that should be created in the Automate server</td>
+      <td><code class="highlighter-rouge">['user_automate_token']</code></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">camsa.automate.kernel."vm.max_map_count"</code></td>
+      <td> </td>
+      <td>262144</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">camsa.automate.kernel."vm.dirty_expire_centisecs"</code></td>
+      <td> </td>
+      <td>20000</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">camsa.automate.download.channel</code></td>
+      <td>Channel from which the Automate package should be downloaded</td>
+      <td>current</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">camsa.automate.download.url</code></td>
+      <td>The URL from which the package will be downloaded. This channel is substituted into the string at run time</td>
+      <td>https://packages.chef.io/files/%s/automate/latest/chef-automate_linux_amd64.zip</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">camsa.automate.command.location</code></td>
+      <td>Location of the <code class="highlighter-rouge">chef-automate</code> command once installed</td>
+      <td><code class="highlighter-rouge">/usr/local/bin/chef-automate</code></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">camsa.automate.certs.cert</code></td>
+      <td>Path to the deployment service certificate</td>
+      <td><code class="highlighter-rouge">/hab/svc/deployment-service/data/deployment-service.crt</code></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">camsa.automate.certs.key</code></td>
+      <td>Path to the deployment service certificate key</td>
+      <td><code class="highlighter-rouge">/hab/svc/deployment-service/data/deployment-service.key</code></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">camsa.automate.certs.cacert</code></td>
+      <td>Path to the Certificate Authority which signed the deployment service certificate</td>
+      <td><code class="highlighter-rouge">/hab/svc/deployment-service/data/cacert.crt</code></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">camsa.automate.license</code></td>
+      <td>The automate license. This can be supplied if a license has already been obtained. If not  a trial one will be generated and assigned.</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="azure_functionsrb">azure_functions.rb</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Description</th>
+      <th>Default Value</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">camsa.azure_functions.camsa.url</code></td>
+      <td>URL to the functions that have been deployed as a part of CAMSA. This will be supplied by the ARM template</td>
+      <td>’’</td>
+      <td>*</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">camsa.azure_functions.camsa.apikey</code></td>
+      <td>ApiKey that belongs to the specified URL. This will be supplied by the ARM template</td>
+      <td>’’</td>
+      <td>*</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">camsa.azure_functsion.central.url</code></td>
+      <td>URL to the central functions for management. This will only be populated if deployed as a Managed Application</td>
+      <td>’’</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">camsa.azure_functions.central.apikey</code></td>
+      <td>ApiKey for the specified central functions URL. This will only be populated if deployed as a Managed Application</td>
+      <td>’’</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">camsa.monitoring.automate.function.name</code></td>
+      <td>Name of the function endpoint to use to send the Automate statistics. Will be supplied by the ARM template</td>
+      <td><code class="highlighter-rouge">AutomateLog</code></td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="chefserverrb">chefserver.rb</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Description</th>
+      <th>Default Value</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">camsa.chefserver.user.statsd</code></td>
+      <td>User that should be created for the Statsd service</td>
+      <td><code class="highlighter-rouge">statsd</code></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">camsa.chefserver.npm.packages</code></td>
+      <td>Hash table of packages that need to be installed to monitor the chef server statistics. See below for the packages.</td>
+      <td>{}</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The following table shows the NPM Packages that are installed, what they are for and the options being used.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Package Name</th>
+      <th>Version</th>
+      <th>Option</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>statsd</td>
+      <td>0.8.0</td>
+      <td>-g</td>
+      <td>Statsd server to receive statistics from the the Chef Server</td>
+    </tr>
+    <tr>
+      <td>azure-storage</td>
+      <td> </td>
+      <td>-g</td>
+      <td>Library to allow files to be uploaded to Azure Storage</td>
+    </tr>
+    <tr>
+      <td>sprintf-js</td>
+      <td> </td>
+      <td>-g</td>
+      <td>Library to allow formatting of strings within Javascript</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="cleanrb">clean.rb</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Description</th>
+      <th>Default Value</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">camsa.clean</code></td>
+      <td>When testing it is useful to be able to delete the flags that are generated to make things idempotent.</td>
+      <td>false</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="config_storerb">config_store.rb</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Description</th>
+      <th>Default Value</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">camsa.config_store.items.automate.automate_fqdn</code></td>
+      <td>FQDN of the automate server. This is set by the template.</td>
+      <td>node[‘fqdn]</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">camsa.config_store.items.automate.pip_automate_fqdn</code></td>
+      <td>FQDN that is assigned to the Public IP in Azure. This will be retrieved by the default recipe</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">camsa.config_store.items.automate.automate_internal_ip</code></td>
+      <td>Internal IP address of the automate server</td>
+      <td>node[‘azure’][‘metadata’][‘network’][‘local_ipv4’][0]</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">camsa.config_store.items.chef.chef_fqdn</code></td>
+      <td>FQDN of the chef server. This is set by the template.</td>
+      <td>node[‘fqdn]</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">camsa.config_store.items.chef.pip_chef_fqdn</code></td>
+      <td>FQDN that is assigned to the Public IP in Azure. This will be retrieved by the default recipe</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">camsa.config_store.items.chef.chef_internal_ip</code></td>
+      <td>Internal IP address of the chef server</td>
+      <td>node[‘azure’][‘metadata’][‘network’][‘local_ipv4’][0]</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">camsa.config_store.items.supermarket.supermarket_fqdn</code></td>
+      <td>FQDN of the automate server. This is set by the template.</td>
+      <td>node[‘fqdn]</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">camsa.config_store.items.supermarket.pip_supermarket_fqdn</code></td>
+      <td>FQDN that is assigned to the Public IP in Azure. This will be retrieved by the default recipe</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">camsa.config_store.items.supermarket.supermarkete_internal_ip</code></td>
+      <td>Internal IP address of the automate server</td>
+      <td>node[‘azure’][‘metadata’][‘network’][‘local_ipv4’][0]</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="cronrb">cron.rb</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Description</th>
+      <th>Default Value</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">camsa.cron.backup</code></td>
+      <td>Cron string stating when the backup should be run</td>
+      <td><code class="highlighter-rouge">0 1 * * *</code></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">camsa.cron.certficate</code></td>
+      <td>String stating when the certificate renew should occur</td>
+      <td><code class="highlighter-rouge">30 0 * * *</code></td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="datadisksrb">datadisks.rb</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Description</th>
+      <th>Default Value</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">camsa.datadisks.automate</code></td>
+      <td>Array of hashes describing what device to format and where to mount it on the machine</td>
+      <td>See below</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Each hash in the array can have the following settings. The example values show the default for the automate datadisks.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>label</td>
+      <td>Label to applied to the partition when it is formatted</td>
+      <td>AutomateDisk</td>
+    </tr>
+    <tr>
+      <td>fstype</td>
+      <td>The type of file system</td>
+      <td>ext4</td>
+    </tr>
+    <tr>
+      <td>device</td>
+      <td>The device on which to create the partition</td>
+      <td>/dev/sdc</td>
+    </tr>
+    <tr>
+      <td>mount</td>
+      <td>Where the device should be mounted</td>
+      <td>/hab</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="defaultrb">default.rb</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Description</th>
+      <th>Default Value</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">camsa.managed_app</code></td>
+      <td>State if the deployment is managed or not. By default it is not. If set to true a check will be made to ensure it is authorised to be a managed app</td>
+      <td>true</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">camsa.deploy.automate</code></td>
+      <td>State if automate should be deployed or not</td>
+      <td>true</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">camsa.deploy.chef</code></td>
+      <td>State if chef should be deployed or not</td>
+      <td>true</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">camsa.deploy.supermarket</code></td>
+      <td>State if supermarket should be deployed or not</td>
+      <td>true</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">camsa.debug</code></td>
+      <td>Specify if extra information should be output in the logs</td>
+      <td>false</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">camsa.firstname</code></td>
+      <td>First name of the account to create on the Chef components</td>
+      <td> </td>
+      <td>*</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">camsa.lastname</code></td>
+      <td>Last name of the account to create on the Chef components</td>
+      <td> </td>
+      <td>*</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">camsa.username</code></td>
+      <td>Username of the account to create on the Chef components</td>
+      <td> </td>
+      <td>*</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">camsa.password</code></td>
+      <td>Password to be set for the created account</td>
+      <td> </td>
+      <td>*</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">camsa.gdpr</code></td>
+      <td>State if Chef is allowed to store your information. In the EU this is GDPR consent.</td>
+      <td>false</td>
+      <td>*</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">camsa.chefserver.org.name</code></td>
+      <td>Name of the organisation to be set on the Chef server</td>
+      <td> </td>
+      <td>*</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">camsa.chefserver.org.description</code></td>
+      <td>Description of the organisation to be set on the Chef server</td>
+      <td> </td>
+      <td>*</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">camsa.tags</code></td>
+      <td>See below</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p>During deployment the ARM templates add tags to the instance. From the instance it is possible to obtain these tags and Chef makes them available through attributes. However they are not in an object format. For example if two tags were to be set on the instance, such as:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"firstname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"foo"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"lastname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bar"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>When referenced from the metadata this is presented as:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>firstname:foo;lastname:bar
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">default</code> recipe splits this string up and sets it as an object in the <code class="highlighter-rouge">node['camsa']['tags']</code> for easy reference.</p>
+
+<h2 id="directoriesrb">directories.rb</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Description</th>
+      <th>Default Value</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">camsa.dirs.working</code></td>
+      <td>Base working directory for CAMSA</td>
+      <td><code class="highlighter-rouge">/usr/local/camsa</code></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">camsa.dirs.bin</code></td>
+      <td>Scripts and commands for CAMSA within the working dir</td>
+      <td><code class="highlighter-rouge">#{node['camsa']['dirs']['working']}/bin</code></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">camsa.dirs.etc</code></td>
+      <td>Configuration files</td>
+      <td><code class="highlighter-rouge">#{node['camsa']['dirs']['working']}/etc</code></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">camsa.dirs.archive</code></td>
+      <td>Location for files that are moved or replaced</td>
+      <td><code class="highlighter-rouge">#{node['camsa']['dirs']['working']}/archive</code></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">camsa.dirs.flags</code></td>
+      <td>Files used as semaphores to ensure that processes that are not inherently idempotent can be made to be</td>
+      <td><code class="highlighter-rouge">#{node['camsa']['dirs']['working']}/flags</code></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">camsa.dirs.data</code></td>
+      <td>Snippets of information required by the setup</td>
+      <td><code class="highlighter-rouge">#{node['camsa']['dirs']['working']}/data</code></td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="storage_accountrb">storage_account.rb</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Description</th>
+      <th>Default Value</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">camsa.storage_account.name</code></td>
+      <td>Name of the storage account to be used to store backups</td>
+      <td> </td>
+      <td>*</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">camsa.storage_account.access_key</code></td>
+      <td>Access key associated with the specified storage account</td>
+      <td> </td>
+      <td>*</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">camsa.storage_account.container_name</code></td>
+      <td>Container within the storage account to upload files to</td>
+      <td> </td>
+      <td>*</td>
+    </tr>
+  </tbody>
+</table>
+
+
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

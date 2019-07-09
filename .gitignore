@@ -18,7 +18,7 @@ bin/*
 
 # test kitchen
 .kitchen/
-.kitchen.local.yml
+kitchen.local.yml
 
 # Chef
 Berksfile.lock
@@ -26,3 +26,6 @@ Berksfile.lock
 Policyfile.lock.json
 
 local
+
+habitat/policyfile_name
+

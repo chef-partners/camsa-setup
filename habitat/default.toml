@@ -5,3 +5,51 @@ chef_client_ident = ""
 enable = "true"
 server_url = ""
 token = ""
+
+[attributes]
+
+  [attributes.common]
+    [attributes.common.functions]
+    url = ""
+    apikey = ""
+
+  [attributes.camsa]
+  firstname = ""
+  lastname = ""
+  emailaddress = ""
+  username = ""
+  password = ""
+  license = ""
+  managed_app = false
+  gdpr = ""
+
+    [attributes.camsa.subscription]
+    id = ""
+
+    [attributes.camsa.sa]
+    name = ""
+    container_name = ""
+    access_key = ""
+
+    [attributes.camsa.fqdn]
+    automate = ""
+    chef = ""
+    supermarket = ""
+
+    [attributes.camsa.publicip]
+    automate = ""
+    chef = ""
+    supermarket = ""
+
+  [attributes.log_analytics]
+  enabled = true
+
+    [attributes.log_analytics.central]
+    url = ""
+    apikey = ""
+
+  [attributes.chefserver]
+    [attributes.chefserver.org]
+    name = ""
+    description = ""
+

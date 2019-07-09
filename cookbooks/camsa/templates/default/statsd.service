@@ -1,0 +1,10 @@
+[Unit]
+Description=StatsD daemon for Chef Server monitoring
+
+[Service]
+User=<%= @user %>
+Type=simple
+ExecStart=/usr/bin/node <%= @statsd_path %> <%= @statsd_config_file %>
+
+[Install]
+WantedBy=multi-user.target

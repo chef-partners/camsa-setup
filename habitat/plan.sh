@@ -1,12 +1,12 @@
-if [ -z ${CHEF_POLICYFILE} ]
+if [ ! -f "policyfile_name" ]
 then
-  policy_name="base"
+  policy_name="server_setup"
 else
-  policy_name=${CHEF_POLICYFILE}
+  policy_name=`cat policyfile_name`
 fi
 
 scaffold_policy_name="$policy_name"
-pkg_name=chef-${policy_name}
+pkg_name=camsa_${policy_name}
 pkg_origin=camsa
 pkg_version="0.1.0"
 pkg_maintainer="Russell Seymour <rseymour@chef.io>"

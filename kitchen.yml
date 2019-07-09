@@ -1,15 +1,18 @@
 ---
 driver:
   name: azurerm
-  subscription_id: 1e0b427a-d58b-494e-ae4f-ee558463ebbf
-  location: West Europe
-  machine_size: Standard_D1
+  subscription_id: <%= ENV['AZURE_SUBSCRIPTION_ID'] %>
+  location: <%= ENV['AZURE_LOCATION'] %>
+  machine_size: Standard_D4s_v3
 
 transport:
   ssh_key: ~/.ssh/id-kitchen-azurerm
 
 provisioner:
   name: chef_zero
+  log_level: <%= ENV['CHEF_LOG_LEVEL'] || 'info' %>
+  product_name: chef
+  product_version: 14
 
 verifier:
   name: inspec
@@ -18,9 +21,9 @@ platforms:
   - name: ubuntu-18.04
     driver:
       image_urn: Canonical:UbuntuServer:18.04-LTS:latest
-      vm_name: camsa-setup-test
-      vm_tags:
-        description: CAMSA Setup cookbook testing
+      data_disks:
+        - lun: 0
+          disk_size_gb: 100
 
 suites:
   - name: automate
@@ -31,4 +34,49 @@ suites:
       post_create:
       - remote: sudo sh -c 'echo "127.0.0.1 automate-gateway" >> /etc/hosts'
     provisioner:
-      policyfile: policyfiles/automate.rb
+      policyfile: policyfiles/camsa.rb
+
+    attributes:
+      camsa:
+        clean: true
+        managed_app: <%= ENV['MANAGED_APP'] || false %>
+        automate:
+          download:
+            channel: <%= ENV['AUTOMATE_DOWNLOAD_CHANNEL'] || "current" %>
+        azure_functions:
+          camsa:
+            url: <%= ENV['AF_CAMSA_URL'] %>
+            apikey: <%= ENV['AF_CAMSA_APIKEY'] %>
+          central:
+            url: <%= ENV['AF_CENTRAL_URL'] %>
+            apikey: <%= ENV['AF_CENTRAL_APIKEY'] %>
+        firstname: <%= ENV['CAMSA_FIRSTNAME'] || 'Foo' %>
+        lastname: <%= ENV['CAMSA_LASTNAME'] || 'Bar' %>
+        emailaddress: <%= ENV['CAMSA_EMAILADDRESS'] || 'foo@bar.com' %>
+        username: <%= ENV['CAMSA_USERNAME'] || 'foobar' %>
+        password: <%= ENV['CAMSA_PASSWORD'] || 'Chef123!' %>
+        storage_account:
+          name: <%= ENV['SA_NAME'] %>
+          access_key: <%= ENV['SA_ACCESS_KEY'] %>
+          container_name: <%= ENV['SA_CONTAINER_NAME'] %>
+        chefserver:
+          org:
+            name: <%= ENV['CHEF_ORG'] || 'acme' %>
+            description: <%= ENV['CHEF_ORG_DESCRIPTION'] || 'Acme Ltd' %>
+
+    verifier:
+      inspec_tests:
+        - path: test/integration/camsa
+      attributes:
+        username: <%= ENV['CAMSA_USERNAME'] || 'foobar' %>
+        managed_app: <%= ENV['MANAGED_APP'] || false %>
+        automate_fqdn: <%= ENV['AUTOMATE_FQDN'] || 'tk-automate.managedautomate.io' %>
+        customer_name: <%=
+          firstname = ENV['CAMSA_FIRSTNAME'] || 'Foo'
+          lastname = ENV['CAMSA_LASTNAME'] || 'Bar'
+          '%s %s' % [firstname, lastname]
+        %>       
+    driver:
+      vm_hostname: camsa-tk-automate
+      vm_tags:
+        x-pip-fqdn: <%= ENV['AUTOMATE_FQDN_PIP'] || 'camsa-tk-automate.westeurope.cloudapp.azure.com' %>
