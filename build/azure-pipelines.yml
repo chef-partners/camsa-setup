@@ -11,6 +11,7 @@ stages:
     CAMSA_USERNAME: azdo
     CHEF_ORG: camsa
     CHEF_ORG_DESCRIPTION: CAMSA
+    CHEF_LICENSE: accept
     
   jobs:
   - job: Build
@@ -20,6 +21,7 @@ stages:
     steps:
 
     - task: vsts-chef-task-install-chefdk@1
+      displayName: Install ChefDK
 
     - task: vsts-chef-task-test-kitchen@1
       displayName: Tests CAMSA Cookbook
