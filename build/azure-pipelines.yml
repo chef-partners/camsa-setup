@@ -28,25 +28,31 @@ stages:
     - task: vsts-habitat-install@3
       displayName: Install Habitat
 
-    - task: .vsts-habitat-signing-key@3
+    - task: vsts-habitat-signing-key@3
       displayName: Signing Origin Key
       inputs:
         habitatOrigin: CAMSA Origin
+        taskAction: install
 
     - task: vsts-habitat-build@3
       displayName: Build Habitat plan
       inputs:
         habitatOrigin: CAMSA Origin
+        habitatSrcPath: '$(Build.SourcesDirectory)'
+        habitatPlanContext: 'habitat'
 
-    - task: vsts-expose-habitat-build-vars@3
+    - task: vsts-habitat-expose-habitat-build-vars@3
       displayName: 'Expose Habitat Build Variables'
       inputs:
-        habitatSetBuildNumber: true
+        habitatLastBuildEnvPath: '$(Build.SourcesDirectory)/results'
+        habitatSetImageNames: true
+        habitatImageNamesFilename: '$(System.DefaultWorkingDirectory)/image.names'
 
     - task: vsts-habitat-pkg-upload@3
       displayName: Upload CAMSA Package
       inputs:
-        habitatOrigin: CAMSA Origin          
+        habitatOrigin: CAMSA Origin    
+        habitatPackagePath: '$(Build.SourcesDirectory)/results/$(pkg_artifact)'      
 
     - task: CopyFiles@2
       displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
@@ -61,4 +67,3 @@ stages:
       displayName: 'Publish Artifact: drop'
       inputs:
         PathtoPublish: '$(build.artifactstagingdirectory)'
-
