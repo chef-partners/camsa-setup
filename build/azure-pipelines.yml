@@ -8,47 +8,47 @@ stages:
         displayName: Built CAMSA Effortless Package
         pool:
           name: AMA Agent
-          steps:
-            - task: chef-software.vsts-chef-tasks.vsts-chef-task-test-kitchen.vsts-chef-task-test-kitchen@1
-              displayName: Tests CAMSA Cookbook
-              inputs:
-                tkAzureEndpoint: CAMSA AzDo Azure SPN
-                tkCommand: Test
-                tkKitchenFile: $(Sources.BuildDirectory)/kitchen.yml
-                
-            - task: chef-software.vsts-habitat-tasks.vsts-habitat-tasks-install.vsts-habitat-install@2
-              displayName: Install Habitat
+        steps:
+          - task: chef-software.vsts-chef-tasks.vsts-chef-task-test-kitchen.vsts-chef-task-test-kitchen@1
+            displayName: Tests CAMSA Cookbook
+            inputs:
+              tkAzureEndpoint: CAMSA AzDo Azure SPN
+              tkCommand: Test
+              tkKitchenFile: $(Sources.BuildDirectory)/kitchen.yml
+              
+          - task: chef-software.vsts-habitat-tasks.vsts-habitat-tasks-install.vsts-habitat-install@2
+            displayName: Install Habitat
 
-            - task: chef-software.vsts-habitat-tasks.vsts-habitat-tasks-signing-key.vsts-habitat-signing-key@2
-              displayName: Signing Origin Key
-              inputs:
-                habitatOrigin: CAMSA Origin
+          - task: chef-software.vsts-habitat-tasks.vsts-habitat-tasks-signing-key.vsts-habitat-signing-key@2
+            displayName: Signing Origin Key
+            inputs:
+              habitatOrigin: CAMSA Origin
 
-            - task: chef-software.vsts-habitat-tasks.vsts-habitat-tasks-build.vsts-habitat-build@2
-              displayName: Build Habitat plan
-              inputs:
-                habitatOrigin: CAMSA Origin
+          - task: chef-software.vsts-habitat-tasks.vsts-habitat-tasks-build.vsts-habitat-build@2
+            displayName: Build Habitat plan
+            inputs:
+              habitatOrigin: CAMSA Origin
 
-            - task: chef-software.vsts-habitat-tasks.vsts-expose-habitat-build-vars.vsts-expose-habitat-build-vars@2
-              displayName: 'Expose Habitat Build Variables'
-              inputs:
-                habitatSetBuildNumber: true
+          - task: chef-software.vsts-habitat-tasks.vsts-expose-habitat-build-vars.vsts-expose-habitat-build-vars@2
+            displayName: 'Expose Habitat Build Variables'
+            inputs:
+              habitatSetBuildNumber: true
 
-            - task: chef-software.vsts-habitat-tasks.vsts-habitat-pkg-upload.vsts-habitat-pkg-upload@2
-              displayName: Upload CAMSA Package
-              inputs:
-                habitatOrigin: CAMSA Origin          
+          - task: chef-software.vsts-habitat-tasks.vsts-habitat-pkg-upload.vsts-habitat-pkg-upload@2
+            displayName: Upload CAMSA Package
+            inputs:
+              habitatOrigin: CAMSA Origin          
 
-            - task: CopyFiles@2
-              displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
-              inputs:
-                SourceFolder: '$(Build.SourcesDirectory)/results'
-                Contents: |
-                  *-$(Build.BuildNumber)-*.hart
-                  last_build.env
-                TargetFolder: '$(build.artifactstagingdirectory)'
-            
-            - task: PublishBuildArtifacts@1
-              displayName: 'Publish Artifact: drop'
-              inputs:
-                PathtoPublish: '$(build.artifactstagingdirectory)'
+          - task: CopyFiles@2
+            displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
+            inputs:
+              SourceFolder: '$(Build.SourcesDirectory)/results'
+              Contents: |
+                *-$(Build.BuildNumber)-*.hart
+                last_build.env
+              TargetFolder: '$(build.artifactstagingdirectory)'
+          
+          - task: PublishBuildArtifacts@1
+            displayName: 'Publish Artifact: drop'
+            inputs:
+              PathtoPublish: '$(build.artifactstagingdirectory)'
