@@ -34,7 +34,7 @@ stages:
     - task: CmdLine@2
       inputs:
         script: |
-          gem cleanup bundler
+          /opt/chefdk/embedded/bin/gem cleanup bundler
           /opt/chefdk/bin/kitchen test
 
     - task: vsts-habitat-install@3
