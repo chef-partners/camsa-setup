@@ -23,13 +23,18 @@ stages:
     - task: vsts-chef-task-install-chefdk@1
       displayName: Install ChefDK
 
-    - task: vsts-chef-task-test-kitchen@1
-      displayName: Tests CAMSA Cookbook
+    #- task: vsts-chef-task-test-kitchen@1
+    #  displayName: Tests CAMSA Cookbook
+    #  inputs:
+    #    tkAzureEndpoint: CAMSA AzDo Azure SPN
+    #    tkCommand: test
+    #    tkKitchenFile: kitchen.yml
+
+    - task: CmdLine@2
       inputs:
-        tkAzureEndpoint: CAMSA AzDo Azure SPN
-        tkCommand: test
-        tkKitchenFile: kitchen.yml
-        
+        script: '/opt/chefdk/bin/kitchen test'
+        workingDirectory: '$(Build.SourcesDirectory)'
+
     - task: vsts-habitat-install@3
       displayName: Install Habitat
 
