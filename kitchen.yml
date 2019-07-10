@@ -34,7 +34,7 @@ suites:
       post_create:
       - remote: sudo sh -c 'echo "127.0.0.1 automate-gateway" >> /etc/hosts'
     provisioner:
-      policyfile: policyfiles/camsa.rb
+      policyfile: policyfiles/server_setup.rb
 
     attributes:
       camsa:
