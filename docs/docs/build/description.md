@@ -25,6 +25,8 @@ A pipeline file is included with the repo and is located in `build/azure-pipelin
 
 The pipeline process consists of the following steps:
 
+ - Deploy CAMSA functions
+ - Install ChefDK
  - Test cookbooks with Test Kitchen
  - Install Habitat
  - Install the Origin Key for the build
@@ -33,3 +35,4 @@ The pipeline process consists of the following steps:
  - Upload the package to Habitat Depot
  - Copy artifact to the artifact directory
  - Upload the artifacts to Azure DevOps
+ - Removed CAMSA functions
