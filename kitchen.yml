@@ -2,7 +2,7 @@
 driver:
   name: azurerm
   subscription_id: <%= ENV['AZURE_SUBSCRIPTION_ID'] %>
-  location: <%= ENV['AZURE_LOCATION'] %>
+  location: <%= ENV['AZURE_LOCATION'] || 'uksouth' %>
   machine_size: Standard_D4s_v3
 
 transport:
