@@ -30,7 +30,7 @@ stages:
         resourceGroupName: $(RG_NAME)
         location: $(AZURE_LOCATION)
         templateLocation: 'Linked artifact'
-        csmFile: $(Build.SourcesDirectory)/build/azuredeploy.json'
+        csmFile: $(Build.SourcesDirectory)/build/azuredeploy.json
         deploymentMode: 'Incremental'
         overrideParameters: |
           prefix=azdo
