@@ -12,6 +12,8 @@ stages:
     CHEF_ORG: camsa
     CHEF_ORG_DESCRIPTION: CAMSA
     CHEF_LICENSE: accept
+    AZURE_LOCATION: uksouth
+    RG_NAME: azdo-camsa-functions-$(Build.BuildNumber)
     
   jobs:
   - job: Build
@@ -19,6 +21,28 @@ stages:
     pool:
       name: Hosted Ubuntu 1604
     steps:
+
+    - task: AzureResourceGroupDeployment@2
+      displayName: Deploy CAMSA Functions
+      inputs:
+        azureSubscription: 'CAMSA AzDo Azure SPN'
+        action: 'Create Or Update Resource Group'
+        resourceGroupName: $(RG_NAME)
+        location: $(AZURE_LOCATION)
+        templateLocation: 'Linked artifact'
+        csmFile: $(Build.SourcesDirectory)/build/azuredeploy.json'
+        deploymentMode: 'Incremental'
+        overrideParameters: |
+          prefix=azdo
+          repoBranch=master
+
+    - task: ARM Outputs@5
+      displayName: Retrieve ARM Deployment Outputs
+      inputs:
+        ConnectedServiceNameSelector: 'ConnectedServiceNameARM'
+        ConnectedServiceNameARM: 'CAMSA AzDo Azure SPN'
+        resourceGroupName: $(RG_NAME)
+        whenLastDeploymentIsFailed: 'fail'
 
     - task: vsts-chef-task-install-chefdk@1
       displayName: Install ChefDK
@@ -33,6 +57,12 @@ stages:
         tkAzureEndpoint: CAMSA AzDo Azure SPN
         tkCommand: test
         tkKitchenFile: kitchen.yml
+
+    - task: AzureResourceGroupDeployment@2
+      inputs:
+        azureSubscription: 'CAMSA AzDo Azure SPN'
+        action: 'DeleteRG'
+        resourceGroupName: $(RG_NAME)        
 
     - task: vsts-habitat-install@3
       displayName: Install Habitat
@@ -76,3 +106,4 @@ stages:
       displayName: 'Publish Artifact: drop'
       inputs:
         PathtoPublish: '$(build.artifactstagingdirectory)'
+
