@@ -32,9 +32,7 @@ stages:
         templateLocation: 'Linked artifact'
         csmFile: $(Build.SourcesDirectory)/build/azuredeploy.json
         deploymentMode: 'Incremental'
-        overrideParameters: |
-          prefix=azdo
-          repoBranch=master
+        overrideParameters: --prefix azdo --repoBranch master
 
     - task: ARM Outputs@5
       displayName: Retrieve ARM Deployment Outputs
