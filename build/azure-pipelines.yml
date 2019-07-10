@@ -17,7 +17,7 @@ stages:
   - job: Build
     displayName: Built CAMSA Effortless Package
     pool:
-      name: AMA Agent
+      name: Hosted Ubuntu 1604
     steps:
 
     - task: vsts-chef-task-install-chefdk@1
@@ -33,9 +33,12 @@ stages:
 
     - task: CmdLine@2
       inputs:
-        script: |
-          /opt/chefdk/embedded/bin/gem cleanup bundler
-          /opt/chefdk/bin/kitchen test
+        script: sudo /opt/chefdk/embedded/bin/gem cleanup bundler
+          
+    - task: CmdLine@2
+      displayName: Run Test Kitchen
+      inputs:
+        script: /opt/chefdk/bin/kitchen test
 
     - task: vsts-habitat-install@3
       displayName: Install Habitat
