@@ -23,22 +23,16 @@ stages:
     - task: vsts-chef-task-install-chefdk@1
       displayName: Install ChefDK
 
-
-    #- task: vsts-chef-task-test-kitchen@1
-    #  displayName: Tests CAMSA Cookbook
-    #  inputs:
-    #    tkAzureEndpoint: CAMSA AzDo Azure SPN
-    #    tkCommand: test
-    #    tkKitchenFile: kitchen.yml
-
     - task: CmdLine@2
       inputs:
         script: sudo /opt/chefdk/embedded/bin/gem cleanup bundler
           
-    - task: CmdLine@2
-      displayName: Run Test Kitchen
+    - task: vsts-chef-task-test-kitchen@1
+      displayName: Tests CAMSA Cookbook
       inputs:
-        script: /opt/chefdk/bin/kitchen test
+        tkAzureEndpoint: CAMSA AzDo Azure SPN
+        tkCommand: test
+        tkKitchenFile: kitchen.yml
 
     - task: vsts-habitat-install@3
       displayName: Install Habitat
