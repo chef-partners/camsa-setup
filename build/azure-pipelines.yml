@@ -17,7 +17,7 @@ stages:
   - job: Build
     displayName: Built CAMSA Effortless Package
     pool:
-      name: Hosted Ubuntu 16.04
+      name: Hosted Ubuntu 1604
     steps:
 
     - task: vsts-chef-task-install-chefdk@1
