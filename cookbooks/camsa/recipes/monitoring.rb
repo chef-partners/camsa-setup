@@ -45,9 +45,8 @@ if node['camsa']['deploy']['chef'] &&
    node['camsa']['log_analytics']['enabled']
 
   # Install NodeJS on the machine to run statsd to recive data from the chef server
-  include_recipe 'nodejs::install'
+  include_recipe 'nodejs::default'
 
-  # Install npm so that packages can be managed
   package 'npm'
 
   # Set the path to the statsd plugin, which will be put in place by the recipe
@@ -73,7 +72,8 @@ if node['camsa']['deploy']['chef'] &&
   node['camsa']['chefserver']['npm']['packages'].each do |package|
     npm_package package['name'] do
       version package['version'] if package.include?('version')
-      options package['options']
+      options package['options'] if package.include?('options')
+      path package['path'] if package.include?('path')
     end
   end
 
@@ -95,7 +95,7 @@ if node['camsa']['deploy']['chef'] &&
     source 'statsd.service'
     variables ({
       user: node['camsa']['chefserver']['user']['statsd'],
-      statsd_path: '',
+      statsd_path: node['camsa']['chefserver']['statsd']['location'],
       statsd_config_file: statsd_config_file
     })
   end

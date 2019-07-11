@@ -29,3 +29,4 @@ local
 
 habitat/policyfile_name
 
+test/*_inspec.xml

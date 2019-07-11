@@ -1,8 +1,8 @@
-deploy_automate = attribute('deploy_automate', default: true, description: 'States if the machine has had Automate deployed to it')
-deploy_chef = attribute('deploy_chef', default: true, description: 'States if the machine has had Chef deployed to it')
-deploy_supermarket = attribute('deploy_supermarket', default: true, description: 'States if the machine has had Supermarket deployed to it')
+deploy_automate = input('deploy_automate', value: true, description: 'States if the machine has had Automate deployed to it')
+deploy_chef = input('deploy_chef', value: true, description: 'States if the machine has had Chef deployed to it')
+deploy_supermarket = input('deploy_supermarket', value: true, description: 'States if the machine has had Supermarket deployed to it')
 
-# Based on the attributes, perform the relevant tests
+# Based on the inputs, perform the relevant tests
 if deploy_automate
 
   # Check that the /dev/dsc1 has been mounted on /hab

@@ -1,4 +1,4 @@
-deploy_automate = attribute('deploy_automate', default: true, description: 'States if the machine has had Automate deployed to it')
+deploy_automate = input('deploy_automate', value: true, description: 'States if the machine has had Automate deployed to it')
 
 # Tests to ensure that the kernel has been configured properly if automate has been deployed
 if deploy_automate

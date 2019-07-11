@@ -9,8 +9,8 @@ module CAMSA
 
     property :subscription_id, String, default: lazy { node['azure']['metadata']['compute']['subscriptionId'] }
 
-    property :url, String, default: lazy { node['camsa']['azure_functions']['central']['url'] }
-    property :apikey, String, default: lazy { node['camsa']['azure_functions']['central']['apikey'] }
+    property :url, String, default: lazy { node['camsa']['azure_functions']['central']['url'] || '' } 
+    property :apikey, String, default: lazy { node['camsa']['azure_functions']['central']['apikey'] || '' }
 
     action :run do
       if new_resource.url.empty? || new_resource.apikey.empty?

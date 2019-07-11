@@ -13,11 +13,12 @@ provisioner:
   name: chef_zero
   log_level: <%= ENV['CHEF_LOG_LEVEL'] || 'info' %>
   product_name: chef
-  product_version: 14
+  product_version: 15
 
 verifier:
   name: inspec
   reporter:
+    - cli
     - junit:test/%{platform}_%{suite}_inspec.xml
 
 platforms:
@@ -59,9 +60,9 @@ suites:
         username: <%= ENV['CAMSA_USERNAME'] || 'foobar' %>
         password: <%= ENV['CAMSA_PASSWORD'] || 'Chef123!' %>
         storage_account:
-          name: <%= ENV['SA_NAME'] %>
-          access_key: <%= ENV['SA_ACCESS_KEY'] %>
-          container_name: <%= ENV['SA_CONTAINER_NAME'] %>
+          name: <%= ENV['SA_NAME'] || 'tkstorage' %>
+          access_key: <%= ENV['SA_ACCESS_KEY'] || 'bXl3b25kZXJmdWxpbnZhbGlkcGFzc3dvcmQK' %>
+          container_name: <%= ENV['SA_CONTAINER_NAME'] || 'backup' %>
         chefserver:
           org:
             name: <%= ENV['CHEF_ORG'] || 'acme' %>
@@ -70,7 +71,7 @@ suites:
     verifier:
       inspec_tests:
         - path: test/integration/camsa
-      attributes:
+      inputs:
         username: <%= ENV['CAMSA_USERNAME'] || 'foobar' %>
         managed_app: <%= ENV['MANAGED_APP'] || false %>
         automate_fqdn: <%= ENV['AUTOMATE_FQDN'] || 'tk-automate.managedautomate.io' %>

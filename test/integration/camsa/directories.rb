@@ -1,4 +1,4 @@
-base_dir = attribute('base_dir', default: '/usr/local/camsa', description: 'Base directory fo all CAMSA related files')
+base_dir = input('base_dir', value: '/usr/local/camsa', description: 'Base directory fo all CAMSA related files')
 
 # Ensure all the necessry directories have been created
 

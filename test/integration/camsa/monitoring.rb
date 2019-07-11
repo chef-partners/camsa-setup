@@ -1,9 +1,9 @@
 # Tests to ensure that the monitoring of the componens has been configured
 # correctly
-base_dir = attribute('base_dir', default: '/usr/local/camsa', description: 'Base directory fo all CAMSA related files')
-deploy_automate = attribute('deploy_automate', default: true, description: 'States if the machine has had Automate deployed to it')
-deploy_chef = attribute('deploy_chef', default: true, description: 'States if the machine has had Chef deployed to it')
-statsd_user = attribute('statsd_yser', default: 'statsd', description: 'User that the statsd service will run under')
+base_dir = input('base_dir', value: '/usr/local/camsa', description: 'Base directory fo all CAMSA related files')
+deploy_automate = input('deploy_automate', value: true, description: 'States if the machine has had Automate deployed to it')
+deploy_chef = input('deploy_chef', value: true, description: 'States if the machine has had Chef deployed to it')
+statsd_user = input('statsd_yser', value: 'statsd', description: 'User that the statsd service will run under')
 
 
 # Automate server monitoring
@@ -35,12 +35,20 @@ if deploy_chef
     it { should be_installed }
   end
 
-  # Create array of the npm packages that need to be checked
-  %w{statsd azure-storage sprintf-js}.each do |npm_package|
-    describe npm(npm_package) do
-      it { should be_installed }
-    end
+  # Check necessary NPM packages are installed
+  describe npm('statsd') do
+    it { should be_installed }
   end
+  
+=begin
+  describe npm('azure-storage', path: '/usr/local/camsa/statsd/azure-queue') do
+    it { should be_installed }
+  end
+
+  describe npm('sprintf-js', path: '/usr/local/camsa/statsd/azure-queue') do
+    it { should be_installed }
+  end
+=end
 
   # Ensure that the user exists
   describe user(statsd_user) do

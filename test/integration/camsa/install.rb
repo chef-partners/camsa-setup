@@ -1,6 +1,6 @@
 # Tests to ensure that the installation has been completed properly
-base_dir = attribute('base_dir', default: '/usr/local/camsa', description: 'Base directory fo all CAMSA related files')
-deploy_automate = attribute('deploy_automate', default: true, description: 'States if the machine has had Automate deployed to it')
+base_dir = input('base_dir', value: '/usr/local/camsa', description: 'Base directory fo all CAMSA related files')
+deploy_automate = input('deploy_automate', value: true, description: 'States if the machine has had Automate deployed to it')
 
 # Check that the download of the automate package was successful
 describe file('/tmp/kitchen/cache/chef-automate_linux_amd64.zip') do

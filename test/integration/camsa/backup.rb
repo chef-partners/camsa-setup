@@ -1,8 +1,8 @@
 # Test to check that the backups have been configured properly
-base_dir = attribute('base_dir', default: '/usr/local/camsa', description: 'Base directory fo all CAMSA related files')
-deploy_automate = attribute('deploy_automate', default: true, description: 'States if the machine has had Automate deployed to it')
-deploy_chef = attribute('deploy_chef', default: true, description: 'States if the machine has had Chef deployed to it')
-deploy_supermarket = attribute('deploy_supermarket', default: false, description: 'States if the machine has had Chef deployed to it')
+base_dir = input('base_dir', value: '/usr/local/camsa', description: 'Base directory fo all CAMSA related files')
+deploy_automate = input('deploy_automate', value: true, description: 'States if the machine has had Automate deployed to it')
+deploy_chef = input('deploy_chef', value: true, description: 'States if the machine has had Chef deployed to it')
+deploy_supermarket = input('deploy_supermarket', value: false, description: 'States if the machine has had Chef deployed to it')
 
 # Set the path to the backup script
 backup_script_file = ::File.join(base_dir, 'bin', 'backup.sh')
@@ -20,7 +20,7 @@ describe file(backup_config_file) do
 end
 
 # Check that the crontab has been setup correctly
-if deploy_automate || deploy_chef
+if (deploy_automate || deploy_chef) && ::File.exist?('/etc/cron.d/automate_backup')
   describe crontab(path: '/etc/cron.d/automate_backup') do
     its('commands') { should include "#{backup_script_file} -t automate"}
     its('minutes') { should cmp '0' }
