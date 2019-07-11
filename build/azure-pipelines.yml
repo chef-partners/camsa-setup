@@ -13,7 +13,7 @@ stages:
     CHEF_ORG_DESCRIPTION: CAMSA
     CHEF_LICENSE: accept
     AZURE_LOCATION: uksouth
-    RG_NAME: azdo-camsa-functions-$(Build.BuildNumber)
+    RG_NAME: azdo-camsa-setup-$(Build.BuildNumber)
     
   jobs:
   - job: Build
@@ -41,7 +41,7 @@ stages:
         ConnectedServiceNameARM: 'CAMSA AzDo Azure SPN'
         resourceGroupName: $(RG_NAME)
         whenLastDeploymentIsFailed: 'fail'
-        prefix: 'azdo'
+        prefix: azdo_
 
     - task: vsts-chef-task-install-chefdk@1
       displayName: Install ChefDK
@@ -57,11 +57,17 @@ stages:
         tkCommand: test
         tkKitchenFile: kitchen.yml
 
-    - task: AzureResourceGroupDeployment@2
+#    - task: AzureResourceGroupDeployment@2
+#      inputs:
+#        azureSubscription: 'CAMSA AzDo Azure SPN'
+#        action: 'DeleteRG'
+#        resourceGroupName: $(RG_NAME)        
+
+    - task: PublishTestResults@2
       inputs:
-        azureSubscription: 'CAMSA AzDo Azure SPN'
-        action: 'DeleteRG'
-        resourceGroupName: $(RG_NAME)        
+        testResultsFormat: 'JUnit'
+        testResultsFiles: 'test/*_inspec.xml'
+        testRunTitle: 'Test Kitchen Tests'
 
     - task: vsts-habitat-install@3
       displayName: Install Habitat
