@@ -41,6 +41,7 @@ stages:
         ConnectedServiceNameARM: 'CAMSA AzDo Azure SPN'
         resourceGroupName: $(RG_NAME)
         whenLastDeploymentIsFailed: 'fail'
+        prefix: 'azdo'
 
     - task: vsts-chef-task-install-chefdk@1
       displayName: Install ChefDK

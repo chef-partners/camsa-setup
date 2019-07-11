@@ -45,8 +45,8 @@ suites:
             channel: <%= ENV['AUTOMATE_DOWNLOAD_CHANNEL'] || "current" %>
         azure_functions:
           camsa:
-            url: <%= ENV['AF_CAMSA_URL'] %>
-            apikey: <%= ENV['AF_CAMSA_APIKEY'] %>
+            url: <%= ENV['AF_CAMSA_URL']  || ENV['AZDO_APIBASEURL'] %>
+            apikey: <%= ENV['AF_CAMSA_APIKEY'] || ENV['AZDO_FUNCTIONHOSTKEY'] %>
           central:
             url: <%= ENV['AF_CENTRAL_URL'] %>
             apikey: <%= ENV['AF_CENTRAL_APIKEY'] %>
