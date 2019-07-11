@@ -57,11 +57,11 @@ stages:
         tkCommand: test
         tkKitchenFile: kitchen.yml
 
-#    - task: AzureResourceGroupDeployment@2
-#      inputs:
-#        azureSubscription: 'CAMSA AzDo Azure SPN'
-#        action: 'DeleteRG'
-#        resourceGroupName: $(RG_NAME)        
+    - task: AzureResourceGroupDeployment@2
+      inputs:
+        azureSubscription: 'CAMSA AzDo Azure SPN'
+        action: 'DeleteRG'
+        resourceGroupName: $(RG_NAME)        
 
     - task: PublishTestResults@2
       inputs:

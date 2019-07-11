@@ -21,7 +21,7 @@ module CAMSA
     property :creates, String, default: lazy { ::File.join(node['camsa']['dirs']['flags'], 'register_dns.flag') }
 
     action :run do
-      register_with_dns unless sentinel_file.exist?
+      register_with_dns unless sentinel_file.exist? || new_resource.verify_url.empty?
     end
 
     action_class do

@@ -4,11 +4,7 @@ driver:
   subscription_id: <%= ENV['AZURE_SUBSCRIPTION_ID'] %>
   location: <%= ENV['AZURE_LOCATION'] || 'uksouth' %>
   machine_size: Standard_D4s_v3
-  <%= if ENV['RG_NAME'] 
-  'explicit_resource_group_name: %s' % [ENV['RG_NAME']]
-  'destroy_explicit_resource_group: true'
-  end
-%>
+  <%= ENV['RG_NAME'] ? format('explicit_resource_group_name: %s', ENV['RG_NAME']) : '' %>
 
 transport:
   ssh_key: ~/.ssh/id-kitchen-azurerm
