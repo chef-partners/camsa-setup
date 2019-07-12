@@ -12,6 +12,7 @@ stages:
     CHEF_ORG: camsa
     CHEF_ORG_DESCRIPTION: CAMSA
     CHEF_LICENSE: accept
+    HABITAT_LICENSE: accept
     AZURE_LOCATION: uksouth
     RG_NAME: azdo-camsa-setup-$(Build.BuildNumber)
     PERFORM_TESTS: false
