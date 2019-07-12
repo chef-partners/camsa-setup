@@ -36,12 +36,10 @@ if deploy_automate && deploy_chef && managed_app
   end
 
   # Ensure the cronjob is in place
-  if ::File.exist?('/etc/cron.d/renew_certificate')
-    describe crontab(path: '/etc/cron.d/renew_certificate') do
-      its('commands') { should include ::File.join(base_dir, 'bin', 'renew_cert.sh') }
-      its('minutes') { should cmp '30' }
-      its('hours') { should cmp '0' }  
-    end
+  describe crontab(path: '/etc/cron.d/renew_certificate') do
+    its('commands') { should include ::File.join(base_dir, 'bin', 'renew_cert.sh') }
+    its('minutes') { should cmp '30' }
+    its('hours') { should cmp '0' }  
   end
 
 end
