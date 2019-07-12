@@ -52,6 +52,7 @@ stages:
           
     - task: vsts-chef-task-test-kitchen@1
       displayName: Tests CAMSA Cookbook
+      enabled: false
       inputs:
         tkAzureEndpoint: CAMSA AzDo Azure SPN
         tkCommand: test
@@ -64,6 +65,7 @@ stages:
         resourceGroupName: $(RG_NAME)        
 
     - task: PublishTestResults@2
+      enabled: false
       inputs:
         testResultsFormat: 'JUnit'
         testResultsFiles: 'test/*_inspec.xml'
