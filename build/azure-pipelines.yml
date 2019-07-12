@@ -19,7 +19,7 @@ stages:
   - job: Build
     displayName: Built CAMSA Effortless Package
     pool:
-      name: Hosted Ubuntu 1604
+      name: AMA Agent
     steps:
 
     - task: AzureResourceGroupDeployment@2
