@@ -99,7 +99,7 @@ stages:
     - task: vsts-habitat-expose-habitat-build-vars@3
       displayName: 'Expose Habitat Build Variables'
       inputs:
-        habitatLastBuildEnvPath: '$(Build.SourcesDirectory)/results/last_build.env'
+        habitatLastBuildEnvPath: '$(Build.SourcesDirectory)/results'
         habitatSetImageNames: true
         habitatImageNamesFilename: '$(System.DefaultWorkingDirectory)/image.names'
 
