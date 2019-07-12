@@ -5,8 +5,8 @@ module CAMSA
     resource_name :automate_dns
 
     # Set properties to send the data for the DNS entries
-    property :verify_url, String, default: lazy { node['camsa']['azure_functions']['central']['url'] }
-    property :verify_apikey, String, default: lazy { node['camsa']['azure_functions']['central']['apikey'] }
+    property :verify_url, String, default: lazy { node['camsa']['azure_functions']['central']['url'] || '' }
+    property :verify_apikey, String, default: lazy { node['camsa']['azure_functions']['central']['apikey'] || '' }
 
     property :license, String, default: lazy { node.run_state[:automate][:license] }
     property :subscription_id, String, default: lazy { node['azure']['metadata']['compute']['subscriptionId'] }
