@@ -14,7 +14,7 @@ stages:
     CHEF_LICENSE: accept
     AZURE_LOCATION: uksouth
     RG_NAME: azdo-camsa-setup-$(Build.BuildNumber)
-    PERFORM_TESTS: true
+    PERFORM_TESTS: false
     
   jobs:
   - job: Build
@@ -25,7 +25,7 @@ stages:
 
     - task: AzureResourceGroupDeployment@2
       displayName: Deploy CAMSA Functions
-      condition: and(succeeded(), eq(variables['PERFORM_TESTS'], true))
+      condition: and(succeeded(), or(eq(variables['PERFORM_TESTS'], true), eq(variables['PERFORM_TESTS'], 'true')))
       inputs:
         azureSubscription: 'CAMSA AzDo Azure SPN'
         action: 'Create Or Update Resource Group'
@@ -38,7 +38,7 @@ stages:
 
     - task: ARM Outputs@5
       displayName: Retrieve ARM Deployment Outputs
-      condition: and(succeeded(), eq(variables['PERFORM_TESTS'], true))
+      condition: and(succeeded(), or(eq(variables['PERFORM_TESTS'], true), eq(variables['PERFORM_TESTS'], 'true')))
       inputs:
         ConnectedServiceNameSelector: 'ConnectedServiceNameARM'
         ConnectedServiceNameARM: 'CAMSA AzDo Azure SPN'
@@ -47,18 +47,18 @@ stages:
         prefix: azdo_
 
     - task: vsts-chef-task-install-chefdk@1
-      condition: and(succeeded(), eq(variables['PERFORM_TESTS'], true))
+      condition: and(succeeded(), or(eq(variables['PERFORM_TESTS'], true), eq(variables['PERFORM_TESTS'], 'true')))
       displayName: Install ChefDK
 
     - task: CmdLine@2
       displayName: Cleanup Bundler
-      condition: and(succeeded(), eq(variables['PERFORM_TESTS'], true))
+      condition: and(succeeded(), or(eq(variables['PERFORM_TESTS'], true), eq(variables['PERFORM_TESTS'], 'true')))
       inputs:
         script: sudo /opt/chefdk/embedded/bin/gem cleanup bundler
           
     - task: vsts-chef-task-test-kitchen@1
       displayName: Tests CAMSA Cookbook
-      condition: and(succeeded(), eq(variables['PERFORM_TESTS'], true))
+      condition: and(succeeded(), or(eq(variables['PERFORM_TESTS'], true), eq(variables['PERFORM_TESTS'], 'true')))
       inputs:
         tkAzureEndpoint: CAMSA AzDo Azure SPN
         tkCommand: test
@@ -66,14 +66,14 @@ stages:
 
     - task: AzureResourceGroupDeployment@2
       displayName: Delete Resource Group
-      condition: and(succeeded(), eq(variables['PERFORM_TESTS'], true))
+      condition: and(succeeded(), or(eq(variables['PERFORM_TESTS'], true), eq(variables['PERFORM_TESTS'], 'true')))
       inputs:
         azureSubscription: 'CAMSA AzDo Azure SPN'
         action: 'DeleteRG'
         resourceGroupName: $(RG_NAME)        
 
     - task: PublishTestResults@2
-      condition: and(succeeded(), eq(variables['PERFORM_TESTS'], true))
+      condition: and(succeeded(), or(eq(variables['PERFORM_TESTS'], true), eq(variables['PERFORM_TESTS'], 'true')))
       inputs:
         testResultsFormat: 'JUnit'
         testResultsFiles: 'test/*_inspec.xml'
