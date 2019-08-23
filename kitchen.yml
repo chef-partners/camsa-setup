@@ -71,7 +71,7 @@ suites:
     verifier:
       inspec_tests:
         - path: test/integration/camsa
-      inputs:
+      attributes:
         username: <%= ENV['CAMSA_USERNAME'] || 'foobar' %>
         managed_app: <%= ENV['MANAGED_APP'] || false %>
         automate_fqdn: <%= ENV['AUTOMATE_FQDN'] || 'tk-automate.managedautomate.io' %>

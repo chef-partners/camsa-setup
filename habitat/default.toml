@@ -8,11 +8,6 @@ token = ""
 
 [attributes]
 
-  [attributes.common]
-    [attributes.common.functions]
-    url = ""
-    apikey = ""
-
   [attributes.camsa]
   firstname = ""
   lastname = ""
@@ -23,33 +18,28 @@ token = ""
   managed_app = false
   gdpr = ""
 
-    [attributes.camsa.subscription]
-    id = ""
+    [attributes.camsa.cron]
+    backup = ""
+    certificate = ""
 
     [attributes.camsa.sa]
     name = ""
     container_name = ""
     access_key = ""
 
-    [attributes.camsa.fqdn]
-    automate = ""
-    chef = ""
-    supermarket = ""
+    [attributes.camsa.log_analytics]
+    enabled = false
 
-    [attributes.camsa.publicip]
-    automate = ""
-    chef = ""
-    supermarket = ""
-
-  [attributes.log_analytics]
-  enabled = true
-
-    [attributes.log_analytics.central]
+    [attributes.camsa.azure_functions.camsa]
     url = ""
     apikey = ""
 
-  [attributes.chefserver]
-    [attributes.chefserver.org]
-    name = ""
-    description = ""
+    [attributes.camsa.azure_functions.central]
+    url = ""
+    apikey = ""
+
+    [attributes.camsa.chefserver]
+      [attributes.camsa.chefserver.org]
+      name = ""
+      description = ""
 

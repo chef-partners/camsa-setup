@@ -1,10 +1,4 @@
 {
-  "common": {
-    "functions": {
-      "url": "{{cfg.attributes.common.functions.url}}",
-      "apikey": "{{cfg.attributes.common.functions.apikey}}"
-    }
-  },
   "camsa": {
     "firstname": "{{cfg.attributes.camsa.firstname}}",
     "lastname": "{{cfg.attributes.camsa.lastname}}",
@@ -13,37 +7,30 @@
     "password": "{{cfg.attributes.camsa.password}}",
     "license": "{{cfg.attributes.camsa.license}}",
     "gdpr": {{cfg.attributes.camsa.gdpr}},
-    "subscription": {
-      "id": "{{cfg.attributes.camsa.subscription_id}}"
-    },
-    "sa": {
+    "storage_account": {
       "name": "{{cfg.attributes.camsa.sa.name}}",
       "container_name": "{{cfg.attributes.camsa.sa.container_name}}",
       "access_key": "{{cfg.attributes.camsa.sa.access_key}}"
     },
     "managed_app": {{cfg.attributes.camsa.managed_app}},
-    "fqdn": {
-      "automate": "{{cfg.attributes.camsa.fqdn.automate}}",
-      "chef": "{{cfg.attributes.camsa.fqdn.chef}}",
-      "supermarket": "{{cfg.attributes.camsa.fqdn.supermarket}}"
+    "azure_functions": {
+      "camsa": {
+        "url": "{{cfg.attribuites.camsa.azure_functions.camsa.url}}",
+        "apikey": "{{cfg.attribuites.camsa.azure_functions.camsa.apikey}}"
+      },
+      "central": {
+        "url": "{{cfg.attribuites.camsa.azure_functions.central.url}}",
+        "apikey": "{{cfg.attribuites.camsa.azure_functions.central.apikey}}"        
+      }
     },
-    "publicip": {
-      "automate": "{{cfg.attributes.camsa.publicip.automate}}",
-      "chef": "{{cfg.attributes.camsa.publicip.chef}}",
-      "supermarket": "{{cfg.attributes.camsa.publicip.supermarket}}"
-    }
-  },
-  "log_analytics": {
-    "enabled": {{cfg.attributes.log_analytics.enabled}},
-    "central": {
-      "url": "{{cfg.attributes.log_analytics.url}}",
-      "apikey": "{{cfg.attributes.log_analytics.apikey}}"
-    }
-  },
-  "chefserver": {
-    "org": {
-      "name": "{{cfg.attributes.chefserver.org.name}}",
-      "description": "{{cfg.attributes.chefserver.org.description}}"
+    "chefserver": {
+      "org": {
+        "name": "{{cfg.attributes.chefserver.org.name}}",
+        "description": "{{cfg.attributes.chefserver.org.description}}"
+      }
+    },
+    "log_analytics": {
+      "enabled": {{cfg.attributes.log_analytics.enabled}}
     }
   }
 }

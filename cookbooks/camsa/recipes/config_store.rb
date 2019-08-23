@@ -37,9 +37,9 @@ node.override['camsa']['tags'] = tags
 #node.override['camsa']['config_store']['items']['automate']['automate_fqdn'] = tags['x-fqdn']
 node.override['camsa']['config_store']['items']['automate']['pip_automate_fqdn'] = tags['x-pip-fqdn']
 #node.override['camsa']['config_store']['items']['chef']['automate_fqdn'] = tags['x-fqdn']
-node.override['camsa']['config_store']['items']['chef']['pip_automate_fqdn'] = tags['x-pip-fqdn']
+node.override['camsa']['config_store']['items']['chef']['pip_chef_fqdn'] = tags['x-pip-fqdn']
 #node.override['camsa']['config_store']['items']['supermarket']['automate_fqdn'] = tags['x-fqdn']
-node.override['camsa']['config_store']['items']['supermarket']['pip_automate_fqdn'] = tags['x-pip-fqdn']
+node.override['camsa']['config_store']['items']['supermarket']['pip_supermarket_fqdn'] = tags['x-pip-fqdn']
 
 # Iterate around the basic configuration store items
 node['camsa']['config_store']['items'].each do |server_type, details|
