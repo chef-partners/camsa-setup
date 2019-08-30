@@ -25,3 +25,8 @@ pkg_version() {
     echo "0.0.0"
   fi
 }
+
+do_before() {
+  do_default_before
+  update_package_version
+}
