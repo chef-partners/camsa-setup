@@ -86,7 +86,7 @@ stages:
     - task: CmdLine@2
       displayName: Install core/scaffolding-chef as it is unstable
       inputs:
-        script: 'hab pkg install core/scaffolding-chef -c unstable'
+        script: '/tmp/hab pkg install core/scaffolding-chef -c unstable'
 
     - task: vsts-habitat-signing-key@3
       displayName: Signing Origin Key
