@@ -28,5 +28,5 @@ pkg_version() {
 
 do_before() {
   do_default_before
-  update_package_version
+  update_pkg_version
 }
