@@ -97,7 +97,7 @@ stages:
     - task: CmdLine@2
       displayName: Set buildnumber for Habitat plan
       inputs:
-        script: 'cat $BUILD_BUILDNUMBER > buildnumber'
+        script: 'echo $BUILD_BUILDNUMBER > buildnumber'
         workingDirectory: $(Build.SourcesDirectory)
 
     - task: vsts-habitat-build@3
