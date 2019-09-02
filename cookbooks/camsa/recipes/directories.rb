@@ -26,3 +26,9 @@ node['camsa']['dirs'].each do |name, path|
   log format('Creating %s directory: %s', name, path)
   directory path
 end
+
+# Ensure that the Chef cache path exists
+# This is required when running in Habitat as the directory does not seem to alredy exist
+directory Chef::Config[:file_cache_path] do
+  recursive true
+end
