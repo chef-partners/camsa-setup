@@ -13,7 +13,6 @@ cookbook 'line', '~> 2.2.0', :supermarket
 cookbook 'filesystem', '~> 1.0.0', :supermarket
 
 run_list [
-  'camsa::os_packages',
   'camsa::directories',
   'camsa::config_store',
   'camsa::datadisks',
