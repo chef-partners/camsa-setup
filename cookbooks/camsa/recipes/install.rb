@@ -39,7 +39,8 @@ if node['camsa']['deploy']['automate'] ||
   # Unpack the downloaded files
   bash 'unpack-automate' do
     code <<-EOF
-  gunzip -S .zip < #{target} > #{automate_command}
+    `which unzip` -o #{target}
+    mv chef-automate #{automate_command}
     EOF
     not_if { ::File.exist?(automate_command) }
   end
