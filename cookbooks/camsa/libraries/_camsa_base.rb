@@ -27,7 +27,6 @@ module CAMSA
         # If the scheme of the request is HTTPS enable it
         if uri.scheme == 'https'
           http.use_ssl = true
-          ::File.write('/home/azure/http.json', options.to_json)
           # Set certificate information if options has been set
           if options.key?(:ssl)
             case options[:ssl][:verify]
