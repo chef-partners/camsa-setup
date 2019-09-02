@@ -17,13 +17,24 @@ pkg_exports=(
   [chef_client_ident]=chef_client_ident
 )
 
+trim(){
+    [[ "$1" =~ ^[[:space:]]*(.*[^[:space:]])[[:space:]]*$ ]]
+    printf "%s" "${BASH_REMATCH[1]}"
+}
+
 pkg_version() {
-  if [ -z ${BUILD_BUILDNUMBER+x} ]
+ 
+  # Set the version
+  version="0.0.0"
+
+  # Determine if a version file can be found
+  if [ -f $PLAN_CONTEXT/../buildnumber ]
   then
-    echo $BUILD_BUILDNUMBER
-  else
-    echo "0.0.0"
+    version=`cat $PLAN_CONTEXT/../buildnumber`
+    version=`trim $version`
   fi
+
+  echo $version
 }
 
 do_before() {
