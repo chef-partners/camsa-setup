@@ -83,6 +83,9 @@ stages:
     - task: vsts-habitat-install@3
       displayName: Install Habitat
 
+    - task: vsts-chef-task-install-chefdk@1
+      displayName: Install ChefDk
+
     # - task: CmdLine@2
     #  displayName: Install core/scaffolding-chef as it is unstable
     #  inputs:
@@ -120,14 +123,38 @@ stages:
         habitatOrigin: CAMSA Origin    
         habitatPackagePath: '$(Build.SourcesDirectory)/results/$(pkg_artifact)'      
 
+    - task: CmdLine@2
+      displayName: Export Chef Policyfile
+      inputs:
+        script: |
+          chef install ./server_setup.rb
+          chef export server_setup.rb . -a
+          mv ./server_setup-*.tgz server_setup-$(build.buildnumber).tgz
+        workingDirectory: $(Build.SourcesDirectory)/policyfiles
+
+    - task: GitHubRelease@0
+      displayName: Set Policyfile archive as GitHub Release
+      inputs:
+        gitHubConnection: CAMSA Cookbooks - Auth
+        tagSource: manual
+        tag: $(Build.BuildNumber)
+        assets: $(Build.SourcesDirectory)/policyfiles/server_setup-$(Build.BuildNumber).tgz
+
     - task: CopyFiles@2
-      displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
+      displayName: Setting Habitat Artifacts
       inputs:
         SourceFolder: '$(Build.SourcesDirectory)/results'
         Contents: |
           *-$(Build.BuildNumber)-*.hart
           last_build.env
-        TargetFolder: '$(build.artifactstagingdirectory)'
+        TargetFolder: $(build.artifactstagingdirectory)/habitat
+
+    - task: CopyFiles@2
+      displayName: Setting Policyfile Artifacts
+      inputs:
+        SourceFolder: $(Build.SourceDirectory)/policyfiles
+        Contents: server_setup-$(Build.BuildNumber).tgz
+        TargetFolder: $(Build.ArtifactsStagingDirectory)/policyfiles
     
     - task: PublishBuildArtifacts@1
       displayName: 'Publish Artifact: drop'
