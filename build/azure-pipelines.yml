@@ -130,6 +130,8 @@ stages:
           if [ ! -f ./server_setup.lock.json ]
           then
             chef install ./server_setup.rb
+          else
+            sudo chmod +r ./server_setup.lock.json
           fi
           chef export server_setup.rb . -a
           mv ./server_setup-*.tgz server_setup-$(build.buildnumber).tgz
