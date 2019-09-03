@@ -138,7 +138,7 @@ stages:
         workingDirectory: $(Build.SourcesDirectory)/policyfiles
 
     - task: GitHubRelease@0
-      displayName: Set Policyfile archive as GitHub Release
+      displayName: Upload Policyfile archive as GitHub Release
       inputs:
         gitHubConnection: CAMSA Cookbooks - Auth
         tagSource: manual
@@ -157,7 +157,7 @@ stages:
     - task: CopyFiles@2
       displayName: Setting Policyfile Artifacts
       inputs:
-        SourceFolder: $(Build.SourceDirectory)/policyfiles
+        SourceFolder: $(Build.SourcesDirectory)/policyfiles
         Contents: server_setup-$(Build.BuildNumber).tgz
         TargetFolder: $(Build.ArtifactsStagingDirectory)/policyfiles
     
