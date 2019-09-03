@@ -66,6 +66,7 @@ if node['camsa']['deploy']['automate'] ||
     automate_command,
     'deploy',
     'config.toml',
+    '--skip-preflight',
     '--accept-terms-and-mlsa',
   ]
 
