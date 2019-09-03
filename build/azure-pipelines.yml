@@ -127,7 +127,10 @@ stages:
       displayName: Export Chef Policyfile
       inputs:
         script: |
-          chef install ./server_setup.rb
+          if [ ! -f ./server_setup.lock.json ]
+          then
+            chef install ./server_setup.rb
+          fi
           chef export server_setup.rb . -a
           mv ./server_setup-*.tgz server_setup-$(build.buildnumber).tgz
         workingDirectory: $(Build.SourcesDirectory)/policyfiles
