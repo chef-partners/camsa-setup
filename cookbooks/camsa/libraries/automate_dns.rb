@@ -34,7 +34,7 @@ module CAMSA
         options[:body] = {
           name: format('%s %s', new_resource.firstname, new_resource.lastname),
           subscription_id: new_resource.subscription_id,
-          automate_license: new_resource.license,
+          automate_licence: new_resource.license,
           entries: [],
         }
 
