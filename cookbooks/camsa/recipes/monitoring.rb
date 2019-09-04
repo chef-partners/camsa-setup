@@ -47,8 +47,6 @@ if node['camsa']['deploy']['chef'] &&
   # Install NodeJS on the machine to run statsd to recive data from the chef server
   include_recipe 'nodejs::default'
 
-  package 'npm'
-
   # Set the path to the statsd plugin, which will be put in place by the recipe
   plugin_path = ::File.join(node['camsa']['dirs']['working'], 'statsd', 'azure-queue', 'statsd-azure-queue.js')
   plugin_dir = ::File.dirname(plugin_path)
