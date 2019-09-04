@@ -134,6 +134,11 @@ stages:
             sudo chown azure:azure ./server_setup.lock.json
           fi
 
+          if [ -d $(Build.SourcesDirectory)/outputs ]
+          then
+            rm -rf $(Build.SourcesDirectory)/outputs
+          fi
+
           mkdir -p $(Build.SourcesDirectory)/outputs
           chef export server_setup.rb $(Build.SourcesDirectory)/outputs -a -f
 
@@ -168,3 +173,4 @@ stages:
       displayName: 'Publish Artifact: drop'
       inputs:
         PathtoPublish: '$(build.artifactstagingdirectory)'
+
