@@ -25,7 +25,7 @@ module CAMSA
         certificate_key = ::IO.read(new_resource.cert_key_path)
 
         template new_resource.patch_file do
-          soure new_resource.template
+          source new_resource.template
           variables ({
             certificate: certificate,
             key: certificate_key,
