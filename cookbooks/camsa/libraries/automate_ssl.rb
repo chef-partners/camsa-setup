@@ -21,7 +21,7 @@ module CAMSA
       if ::File.exist?(new_resource.cert_path) && ::File.exist?(new_resource.cert_key_path)
 
         # Get the contents of the certificate and key
-        certificate = ::IO.read(new_resouce.cert_path)
+        certificate = ::IO.read(new_resource.cert_path)
         certificate_key = ::IO.read(new_resource.cert_key_path)
 
         template new_resource.patch_file do
