@@ -42,11 +42,11 @@ module CAMSA
         unless new_resource.fqdn.empty? && new_resource.fqdn_pip.empty?
 
           # get the the hostname from the fqdn
-          hostname = new_resource.fqdn.split(".")[0]
+          record = new_resource.fqdn_pip.split(".")[0]
 
           options[:body][:entries] << {
-            name: hostname,
-            target: new_resource.fqdn_pip,
+            name: new_resource.fqdn,
+            target: record,
             type: 'cname',
           }
         end
