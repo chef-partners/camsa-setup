@@ -1,0 +1,8 @@
+[[global.v1.frontend_tls]]
+# The TLS certificate for the load balancer frontend
+cert = "${certiciate}
+"
+
+# The TLS RSA key for the load balancer frontend
+key = "${key}
+"
