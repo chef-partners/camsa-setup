@@ -75,7 +75,21 @@ module CAMSA
 
         unless result.stderr == ''
           raise Chef::Exceptions::Application, format('Error creating new user: %s', result.stderr)
+        end        
+
+        # Ensure that the user is an admin so new users can be created
+        cmd = 'chef-server-ctl grant-server-admin-permissions %s' % [new_resource.username]
+
+        log cmd do
+          level :debug
         end
+
+        # Execute the command
+        result = shell_out(cmd)
+
+        unless result.stderr == ''
+          raise Chef::Exceptions::Application, format('Error setting user as admin on server: %s', result.stderr)
+        end        
 
         # Send the information to the configuration store if the URL is not empty
         if new_resource.url.empty?
