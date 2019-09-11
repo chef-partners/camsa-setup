@@ -9,7 +9,7 @@ default['camsa']['config_store']['items'] = {
     'automate_internal_ip': node['azure']['metadata']['network']['local_ipv4'][0],
   },
   'chef': {
-    'chef_fqdn': node['fqdn'],
+    'chefserver_fqdn': node['fqdn'],
     'pip_chef_fqdn': '',
     'chef_internal_ip': node['azure']['metadata']['network']['local_ipv4'][0],
   },
