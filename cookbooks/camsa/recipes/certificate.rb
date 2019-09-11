@@ -17,11 +17,7 @@
 # limitations under the License.
 
 # Configure the SSL certificate for the machine(s)
-
-# This need to be checked when a separate chef server is requested
-
-if node['camsa']['deploy']['automate'] &&
-   node['camsa']['deploy']['chef']
+unless node['camsa']['deploy']['supermarket']
 
   # Create the ceritficate for the server
   camsa_certificate 'automate' do
