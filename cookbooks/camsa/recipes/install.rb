@@ -25,9 +25,8 @@ dirs = node['camsa']['dirs']
 automate = node['camsa']['automate']
 automate_command = automate['command']['location']
 
-# OInstall Chef or Automate if stated by the deployment
-if node['camsa']['deploy']['automate'] ||
-   node['camsa']['deploy']['chef']
+# Install Chef or Automate if stated by the deployment
+unless node['camsa']['deploy']['supermarket']
 
   # Download the automate package
   url = automate['download']['url']
