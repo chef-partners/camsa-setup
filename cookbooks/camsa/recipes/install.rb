@@ -136,7 +136,7 @@ if !node['camsa']['deploy']['automate'] &&
   end
 
   # Install the package
-  package 'chef_infra_server' do
+  dpkg_package 'chef_infra_server' do
     action :install
     source target
   end
