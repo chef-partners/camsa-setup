@@ -18,6 +18,9 @@ default['camsa']['chefserver']['npm']['packages'] = [
   }
 ]
 
+default['camsa']['chefserver']['version'] = '13.0.17'
+default['camsa']['chefserver']['download']['url'] = "https://packages.chef.io/files/stable/chef-server/%s/ubuntu/18.04/chef-server-core_%s-1_amd64.deb" % [node['camsa']['chefserver']['version']]
+
 # Set the user that Statsd will run run
 default['camsa']['chefserver']['user']['statsd'] = 'statsd'
 

@@ -41,12 +41,18 @@ template config_filename do
   })
 end
 
-if node['camsa']['deploy']['automate'] ||
+if node['camsa']['deploy']['automate'] &&
    node['camsa']['deploy']['chef']
 
   # Determine the type to pass to the backup script based on the runlist
   backup_type = 'automate'
 
+end
+
+if !node['camsa']['deploy']['automate'] &&
+  node['camsa']['deploy']['chef']
+
+  backup_type = 'chefinfraserver'
 end
 
 if node['camsa']['deploy']['supermarket'] 

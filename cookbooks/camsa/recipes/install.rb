@@ -25,8 +25,9 @@ dirs = node['camsa']['dirs']
 automate = node['camsa']['automate']
 automate_command = automate['command']['location']
 
-# Install Chef or Automate if stated by the deployment
-unless node['camsa']['deploy']['supermarket']
+# Install Chef / Automate based on what is being deplyed
+if node['camsa']['deploy']['automate'] &&
+   node['camsa']['deploy']['chef']
 
   # Download the automate package
   url = automate['download']['url']
@@ -119,4 +120,25 @@ unless node['camsa']['deploy']['supermarket']
     action :nothing
   end
 
+end
+
+# If deploying chef without automate then need to install the stanadlone package
+# this is because not all commands are available to the chef-server-ctl that comes with Automate
+if !node['camsa']['deploy']['automate'] &&
+    node['camsa']['deploy']['chef']
+
+  chefserver = node['camsa']['chefserver']
+
+  # Download Chef infra server
+  url = chefserver['download']['url']
+  target = ::File.join(Chef::Config[:file_cache_path], ::File.basename(url))
+  remote_file target do
+    source url
+  end
+
+  # Install the package
+  package 'chef_infra_server' do
+    action :install
+    source target
+  end
 end

@@ -281,6 +281,25 @@ then
 
       ;;
 
+      chefinfraserver)
+
+        # Run Chef server backup
+        log "Running Chef Infra Server backup"
+        cmd="chef-server-ctl backup -y"
+        executeCmd "$cmd"
+
+        # Determine the path to the backup fle
+        BACKUP_FILE=`ls -1tr /var/opt/chef-backup | tail -1`
+        BACKUP_PATH="/var/opt/chef-backup/${BACKUP_FILE}"
+
+        # Determine the filename to be used as the blob name
+        blob_name="`basename $BACKUP_PATH`"
+
+        # Determine the command to remove the backup from disk
+        removeBackupCmd="rm -rf $BACKUP_PATH"
+
+      ;;      
+
     supermarket)
 
         # Backup of supermarket is to be done here
