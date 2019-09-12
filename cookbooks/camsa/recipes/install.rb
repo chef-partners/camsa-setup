@@ -26,8 +26,7 @@ automate = node['camsa']['automate']
 automate_command = automate['command']['location']
 
 # Install Chef / Automate based on what is being deplyed
-if node['camsa']['deploy']['automate'] &&
-   node['camsa']['deploy']['chef']
+if node['camsa']['deploy']['automate']
 
   # Download the automate package
   url = automate['download']['url']
