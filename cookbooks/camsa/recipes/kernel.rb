@@ -22,6 +22,6 @@ node['camsa']['automate']['kernel'].each do |name, value|
   sysctl name do
     value value
     
-    only_if { node['camsa']['deploy']['automate'] }
+    unless { node['camsa']['deploy']['supermarket'] }
   end
 end
