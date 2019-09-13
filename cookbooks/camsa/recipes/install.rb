@@ -139,5 +139,16 @@ if !node['camsa']['deploy']['automate'] &&
   dpkg_package 'chef_infra_server' do
     action :install
     source target
+
+    notifies :run, "bash[initial_chef_infra_server_config]", :immediately
+  end
+
+  # Run command to install chef infra server
+  bash 'initial_chef_infra_server_config' do
+    code "chef-server-ctl reconfigure"
+    environment {
+      CHEF_LICENSE: "accept"
+    }
+    action :nothing
   end
 end
