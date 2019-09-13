@@ -147,7 +147,7 @@ if !node['camsa']['deploy']['automate'] &&
   bash 'initial_chef_infra_server_config' do
     code "chef-server-ctl reconfigure"
     environment {
-      CHEF_LICENSE: "accept"
+      CHEF_LICENSE =  "accept"
     }
     action :nothing
   end
