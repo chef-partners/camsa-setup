@@ -8,7 +8,7 @@ module CAMSA
     property :verify_url, String, default: lazy { node['camsa']['azure_functions']['central']['url'] || '' }
     property :verify_apikey, String, default: lazy { node['camsa']['azure_functions']['central']['apikey'] || '' }
 
-    property :license, String, default: lazy { node.run_state[:automate][:license] }
+    property :license, String, default: lazy { node.run_state.key?(:automate) && node.run_state[:automate].key?(:license) ? node.run_state[:automate][:license] : '' } 
     property :subscription_id, String, default: lazy { node['azure']['metadata']['compute']['subscriptionId'] }
 
     # Define properties that need to be added to the request
@@ -30,11 +30,20 @@ module CAMSA
         # Get the options for the HTTP request
         options = build_options
 
+        # get the license from the configuration store if it has not been specified
+        automate_license = new_resource.license
+        if automate_license.empty?
+          config_store 'automate_license' do
+            action :retrieve
+          end
+          automate_license = node.run_state[:http_data]['automate_license']
+        end
+
         # Set the body of the rquest
         options[:body] = {
           name: format('%s %s', new_resource.firstname, new_resource.lastname),
           subscription_id: new_resource.subscription_id,
-          automate_licence: new_resource.license,
+          automate_licence: license,
           entries: [],
         }
 
