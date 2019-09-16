@@ -120,6 +120,11 @@ module CAMSA
     # Retrieve the named configuration item from the store
     action :retrieve do
 
+      headers = {}
+      unless new_resource.apikey.empty?
+        headers['x-functions-key'] = new_resource.apikey
+      end
+
       # Call the camsa http resource to get the data
       camsa_http new_resource.name do
         url prepare_url
@@ -136,12 +141,10 @@ module CAMSA
         url = new_resource.url
         parsed_uri = ::URI.parse(url)
 
-        puts parsed_uri.scheme
-
         replacements = {
           scheme: parsed_uri.scheme,
           host: parsed_uri.host,
-          path: format("config/%s", new_resource.name)
+          path: format("%s/config/%s", parsed_uri.path, new_resource.name)
         }
         url = "%{scheme}://%{host}%{path}" % replacements
 

@@ -7,13 +7,11 @@ module CAMSA
 
     # Set the URL property
     property :url, String, default: lazy { node['camsa']['azure_functions']['camsa']['url'] }
+    property :apikey, String, default: lazy { node['camsa']['azure_functions']['camsa']['apikey'] }
 
     # The name of the token to get to add to the chef server for sending
     # data to the Automate server
     property :token, String, name_property: true
-
-    # Set the Automate FQDN as a property
-    property :automate_fqdn, String, default: lazy { node['azure']['metadata']['compute']['tags']['x-fqdn-automate'] }
 
     load_current_value do
 
@@ -29,7 +27,7 @@ module CAMSA
         end
 
         # Create the ncessary integration
-        log 'Creating secet'
+        log 'Creating secret'
         create_secret
       end
 
@@ -66,8 +64,6 @@ module CAMSA
         exist
       end
 
-      def 
-
       def create_secret 
 
         # Use the base http class to get the data required
@@ -77,14 +73,22 @@ module CAMSA
         replacements = {
           scheme: parsed_uri.scheme,
           host: parsed_uri.host,
-          path: format("%s/%s", parsed_uri.path, new_resource.token),
+          path: format("%s/config/%s", parsed_uri.path, new_resource.token),
           query: parsed_uri.query,
         }
         url = "%{scheme}://%{host}%{path}?%{query}" % replacements
 
-        result = make_request('get', url, [200], build_options)
+        options = build_options
+        options[:headers]['x-functions-key'] = new_resource.apikey
+
+        result = make_request('get', url, [200], options)
 
         log "Setting secret"
+
+        # Get the automate fqdn to set in the chef server configuration file
+        camsa_config_store 'automate_fqdn' do
+          action :retrieve
+        end
 
         # Build the command that is required
         cmd = 'chef-server-ctl set-secret data_collector token "%s"' % [result[:data][new_resource.token]]
@@ -99,10 +103,10 @@ module CAMSA
         open('/etc/opscode/chef-server.rb', 'a') do |f|
           f.puts ''
           f.puts '# Setting data collector for Automate server'
-          f.puts "data_collector['root_url'] = 'https://%s/data-collector/v0/'" % [new_resource.automate_fqdn]
+          f.puts "data_collector['root_url'] = 'https://%s/data-collector/v0/'" % [node.run_state[:http_data]['automate_fqdn']]
           f.puts ''
           f.puts '# Setup access to CIS profiles in the Automate server'
-          f.puts "profiles['root_url'] = 'https://%s'" % [new_resource.automate_fqdn]
+          f.puts "profiles['root_url'] = 'https://%s'" % [node.run_state[:http_data]['automate_fqdn']]
         end
       end
     end
