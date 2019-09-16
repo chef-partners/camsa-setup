@@ -16,7 +16,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# If the chef server is being deployed as a separate server, retrieve the license from the config_store
+config_store 'automate_license' do
+  action :retrieve
+
+  only_if { !node['camsa']['deploy']['automate'] && node['camsa']['deploy']['chef'] }
+end
+
 # Configure the DNS entry for the server
 automate_dns 'register_dns' do
+  license node.run_state[:http_data]['automate_license'] if !node['camsa']['deploy']['automate'] && node['camsa']['deploy']['chef']
+
   only_if { node['camsa']['managed_app'] }
 end

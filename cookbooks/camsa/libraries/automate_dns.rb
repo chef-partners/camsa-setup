@@ -32,12 +32,6 @@ module CAMSA
 
         # get the license from the configuration store if it has not been specified
         automate_license = new_resource.license
-        if automate_license.empty?
-          config_store 'automate_license' do
-            action :retrieve
-          end
-          automate_license = node.run_state[:http_data]['automate_license']
-        end
 
         # Set the body of the rquest
         options[:body] = {
