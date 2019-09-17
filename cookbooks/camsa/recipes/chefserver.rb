@@ -28,14 +28,14 @@ if !node['camsa']['deploy']['automate'] &&
     variables({
       integration: lazy { 
         if ::File.exist?(::File.join(node['camsa']['chefserver']['dir']['config'], 'datacollector.rb')) do
-          ::File.join(node['camsa']['chefserver']['dir']['config'], 'datacollector.rb')
+          ::IO.read(::File.join(node['camsa']['chefserver']['dir']['config'], 'datacollector.rb'))
         else
           ""
         end
        },
        certificate: lazy { 
         if ::File.exist?(::File.join(node['camsa']['chefserver']['dir']['config'], 'chefssl.rb')) do
-          ::File.join(node['camsa']['chefserver']['dir']['config'], 'chefssl.rb')
+          ::IO.read()::File.join(node['camsa']['chefserver']['dir']['config'], 'chefssl.rb'))
         else
           ""
         end
