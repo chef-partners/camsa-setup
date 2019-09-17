@@ -13,7 +13,7 @@ module CAMSA
     property :cert_key_path, String, default: lazy { '/etc/letsencrypt/live/%s/privkey.pem' % [node['fqdn']] }
 
     # Set the configuration file that needs to be appended to
-    property :config_file, Strinf, default: '/etc/opscode/chef-server.rb'
+    property :config_file, String, default: '/etc/opscode/chef-server.rb'
 
     action :run do
 
