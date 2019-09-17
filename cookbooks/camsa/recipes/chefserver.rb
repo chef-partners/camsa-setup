@@ -3,7 +3,7 @@
 #
 
 if !node['camsa']['deploy']['automate'] &&
-   node['camsa']['deploy']['chefserver']
+   node['camsa']['deploy']['chef']
 
   camsa_config_store 'automate_fqdn' do
     action :retrieve
@@ -14,19 +14,33 @@ if !node['camsa']['deploy']['automate'] &&
   end
 
   # Write out the configuration file that will read all files in from the config dir
-  cookbook_file node['camsa']['chefserver']['file']['config'] do
-    source 'chef-server.rb'
-  end
+  #cookbook_file node['camsa']['chefserver']['file']['config'] do
+  #  source 'chef-server.rb'
+  #end
   
-  chefserver_datacollector 'chef_automate_token' do
-    recursive true
+  chefserver_datacollector 'chef_automate_token'
 
+  chefserver_ssl 'ssl_certificate'
+
+  # Use the configuration template to add the settings from the previous resources
+  # This allows control and when chef server will be reconfigured
+  template node['camsa']['chefserver']['file']['config'] do
+    variables({
+      integration: lazy { 
+        if ::File.exist?(::File.join(node['camsa']['chefserver']['dir']['config'], 'datacollector.rb')) do
+          ::File.join(node['camsa']['chefserver']['dir']['config'], 'datacollector.rb')
+        else
+          ""
+        end
+       },
+       certificate: lazy { 
+        if ::File.exist?(::File.join(node['camsa']['chefserver']['dir']['config'], 'chefssl.rb')) do
+          ::File.join(node['camsa']['chefserver']['dir']['config'], 'chefssl.rb')
+        else
+          ""
+        end
+       }       
+    })
     notifies :run, 'bash[chef_reconfigure]', :delayed
   end
-
-  chefserver_ssl 'ssl_certificate' do
-    notifies :run, 'bash[chef_reconfigure]', :delayed
-  end
-
-
 end
