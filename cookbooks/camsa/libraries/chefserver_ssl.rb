@@ -28,8 +28,6 @@ module CAMSA
         append_if_no_line "ssl_certificate_key" do
           path new_resource.cert_path
           line 'echo nginx["ssl_certificateKey"] = "%s"' % [new_resource.cert_key_path]
-
-          notifies :run, "bash[chef_reconfigure]", :immediately
         end
 
         bash 'chef_reconfigure' do
