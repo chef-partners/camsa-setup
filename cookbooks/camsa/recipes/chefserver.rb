@@ -35,7 +35,7 @@ if !node['camsa']['deploy']['automate'] &&
        },
        certificate: lazy { 
         if ::File.exist?(::File.join(node['camsa']['chefserver']['dir']['config'], 'chefssl.rb')) do
-          ::IO.read()::File.join(node['camsa']['chefserver']['dir']['config'], 'chefssl.rb'))
+          ::IO.read(::File.join(node['camsa']['chefserver']['dir']['config'], 'chefssl.rb'))
         else
           ""
         end
