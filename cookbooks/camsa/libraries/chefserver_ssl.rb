@@ -20,6 +20,15 @@ module CAMSA
       # Only proceed if the certificate and key file exist
       if ::File.exist?(new_resource.cert_path) && ::File.exist?(new_resource.cert_key_path)
 
+        template ::File.join(node['camsa']['chefserver']['dir']['config'], 'chefssl.rb') do
+          source 'chefssl.rb'
+          variables({
+            cert_path: new_resource.cert_path,
+            cert_key_path: new_resource.cert_key_path
+          })
+        end
+
+=begin
         append_if_no_line "ssl_certificate" do
           path new_resource.cert_path
           line 'echo nginx["ssl_certificate"] = "%s"' % [new_resource.cert_path]
@@ -34,6 +43,7 @@ module CAMSA
           code "chef-server-ctl reconfigure"
           subscribes :run, "file[#{new_resource.config_file}]", :immediately
         end
+=end
       end
     end
   end

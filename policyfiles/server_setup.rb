@@ -28,5 +28,5 @@ run_list [
   'camsa::backup',
   'camsa::dns',
   'camsa::certificate',
-  'camsa::integrate'
+  'camsa::chefserver'
 ]

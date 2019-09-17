@@ -100,6 +100,7 @@ module CAMSA
         end
         
         # Update the configuration file with these settings
+=begin        
         open('/etc/opscode/chef-server.rb', 'a') do |f|
           f.puts ''
           f.puts '# Setting data collector for Automate server'
@@ -107,6 +108,14 @@ module CAMSA
           f.puts ''
           f.puts '# Setup access to CIS profiles in the Automate server'
           f.puts "profiles['root_url'] = 'https://%s'" % [node.run_state[:http_data]['automate_fqdn']]
+        end
+=end        
+
+        template ::File.join(node['camsa']['chefserver']['dir']['config'], 'datacollector.rb') do
+          source 'datacollector.rb'
+          variables ({
+            automate_fqdn: lazy { node.run_state[:http_data]['automate_fqdn'] }
+          })
         end
       end
     end

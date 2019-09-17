@@ -26,3 +26,6 @@ default['camsa']['chefserver']['user']['statsd'] = 'statsd'
 
 # Set the path to the statsd js
 default['camsa']['chefserver']['statsd']['location'] = '/usr/local/lib/node_modules/statsd/stats.js'
+
+default['camsa']['chefserver']['file']['config'] = '/etc/opscode/chef-server.rb'
+default['camsa']['chefserver']['dir']['config'] = '/etc/opscode/conf.d'

@@ -140,11 +140,11 @@ if !node['camsa']['deploy']['automate'] &&
     action :install
     source target
 
-    notifies :run, "bash[initial_chef_infra_server_config]", :immediately
+    notifies :run, "bash[chef_reconfigure]", :immediately
   end
 
   # Run command to install chef infra server
-  bash 'initial_chef_infra_server_config' do
+  bash 'chef_reconfigure' do
     code "chef-server-ctl reconfigure"
     environment ({
       CHEF_LICENSE: "accept"

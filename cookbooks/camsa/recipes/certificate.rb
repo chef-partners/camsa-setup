@@ -42,8 +42,4 @@ unless node['camsa']['deploy']['supermarket']
   automate_ssl 'ssl_patch' do
     only_if { node['camsa']['managed_app'] && node['camsa']['deploy']['automate'] }
   end
-
-  chefserver_ssl 'ssl_certificate' do
-    only_if { node['camsa']['managed_app'] && !node['camsa']['deploy']['automate'] && node['camsa']['deploy']['chefserver'] }
-  end
 end
