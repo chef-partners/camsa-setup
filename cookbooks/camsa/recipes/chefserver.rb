@@ -25,6 +25,7 @@ if !node['camsa']['deploy']['automate'] &&
   # Use the configuration template to add the settings from the previous resources
   # This allows control and when chef server will be reconfigured
   template node['camsa']['chefserver']['file']['config'] do
+    source 'chef-server.rb'
     variables({
       integration: lazy { 
         if ::File.exist?(::File.join(node['camsa']['chefserver']['dir']['config'], 'datacollector.rb'))
