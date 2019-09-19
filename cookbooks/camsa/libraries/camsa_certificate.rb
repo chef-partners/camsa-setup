@@ -82,12 +82,17 @@ module CAMSA
         stop_command = new_resource.stop_command
 
         # Use the template to create the script that will be run to renew the certificate
-        filename = ::File.join(node['camsa']['dirs']['bin'], 'renew_cert.sh')
-        template filename do
-          source 'renew_cert.sh'
-          variables ({
-            stop_command: stop_command,
-            start_command: start_command,
+        script_filename = ::File.join(node['camsa']['dirs']['bin'], 'configure_automate_crt.sh')
+        cookbook_file script_filename do
+          source 'configure_automate_crt.sh'
+          mode '0755'
+        end
+
+        cron_filename = ::File.join(node['camsa']['dirs']['bin'], 'cron_ssl_renew.sh')
+        template cron_filename do
+          source 'cron_ssl_renew.sh'
+          variables({
+            renew_cert_path: script_filename
           })
           mode '0755'
         end
@@ -100,7 +105,7 @@ module CAMSA
           day timing[2]
           month timing[3]
           weekday timing[4]
-          command filename
+          command cron_filename
         end
 
       end
