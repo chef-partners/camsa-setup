@@ -3,5 +3,8 @@
 default['camsa']['packages'] = [
   {
     name: "unzip"
+  },
+  {
+    name: "npm"
   }
 ]
